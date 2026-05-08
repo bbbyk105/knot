@@ -1,3 +1,4 @@
+import type { Metadata } from "next";
 import Link from "next/link";
 import {
   CTABanner,
@@ -7,6 +8,20 @@ import {
   SubPageShell,
   serviceItems,
 } from "../subpage-components";
+import { breadcrumbJsonLd, jsonLdScript } from "@/lib/jsonld";
+
+export const metadata: Metadata = {
+  title: "サービス｜AI導入・業務自動化・Web / EC構築",
+  description:
+    "AI活用コンサルティング・業務プロセスの可視化・AI導入運用支援・人材育成研修まで、中小企業向けに一気通貫で支援するKnotのサービス。",
+  alternates: { canonical: "/service" },
+  openGraph: {
+    title: "サービス｜Knot",
+    description:
+      "AI活用コンサルティング・業務自動化・Web / EC構築まで、中小企業向けに一気通貫で支援。",
+    url: "/service",
+  },
+};
 
 const fitFor = [
   "AI活用を始めたいが、どこから手を付けるか整理できていない",
@@ -25,6 +40,17 @@ const deliverables = [
 export default function ServicePage() {
   return (
     <SubPageShell>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: jsonLdScript(
+            breadcrumbJsonLd([
+              { name: "ホーム", path: "/" },
+              { name: "サービス", path: "/service" },
+            ]),
+          ),
+        }}
+      />
       <PageHero
         label="SERVICE"
         title="AIを入れて終わりにしない、4つの支援領域。"

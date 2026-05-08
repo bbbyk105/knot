@@ -1,3 +1,4 @@
+import type { Metadata } from "next";
 import {
   CTABanner,
   ContentSection,
@@ -6,6 +7,20 @@ import {
   SubPageShell,
   flowItems,
 } from "../subpage-components";
+import { breadcrumbJsonLd, jsonLdScript } from "@/lib/jsonld";
+
+export const metadata: Metadata = {
+  title: "導入の流れ｜5ステップで現場に定着させる",
+  description:
+    "ヒアリング・課題整理から、提案、実装、定着支援、保守運用までの5ステップ。1業務単位で最短2〜4週間。Knotの標準的な進め方を公開しています。",
+  alternates: { canonical: "/flow" },
+  openGraph: {
+    title: "導入の流れ｜Knot",
+    description:
+      "ヒアリング・設計・実装・定着まで5ステップ。最短2〜4週間で1業務単位から始められます。",
+    url: "/flow",
+  },
+};
 
 const principles = [
   {
@@ -25,6 +40,17 @@ const principles = [
 export default function FlowPage() {
   return (
     <SubPageShell>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: jsonLdScript(
+            breadcrumbJsonLd([
+              { name: "ホーム", path: "/" },
+              { name: "導入の流れ", path: "/flow" },
+            ]),
+          ),
+        }}
+      />
       <PageHero
         label="FLOW"
         title="ご相談から運用まで、5ステップで進めます。"

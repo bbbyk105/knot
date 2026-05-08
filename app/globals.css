@@ -212,6 +212,118 @@ body {
   border-bottom: 1px solid var(--border);
 }
 
+.news-body {
+  color: var(--ink);
+  font-size: 15px;
+  line-height: 1.95;
+}
+.news-body > * + * {
+  margin-top: 1.4em;
+}
+.news-body h2 {
+  font-size: 22px;
+  font-weight: 700;
+  line-height: 1.5;
+  letter-spacing: -0.005em;
+  margin-top: 2.2em;
+  padding-bottom: 0.6em;
+  border-bottom: 1px solid var(--border);
+}
+.news-body h3 {
+  font-size: 18px;
+  font-weight: 700;
+  line-height: 1.55;
+  margin-top: 1.8em;
+}
+.news-body h4 {
+  font-size: 15.5px;
+  font-weight: 700;
+  line-height: 1.55;
+  margin-top: 1.5em;
+}
+.news-body p {
+  font-size: 14.5px;
+  line-height: 1.95;
+  color: var(--fg);
+}
+.news-body a {
+  color: var(--primary);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  text-decoration-thickness: 1px;
+}
+.news-body a:hover {
+  color: var(--primary-hover);
+}
+.news-body strong {
+  font-weight: 700;
+  color: var(--ink);
+}
+.news-body ul,
+.news-body ol {
+  padding-left: 1.4em;
+  font-size: 14.5px;
+  line-height: 1.85;
+}
+.news-body ul { list-style: disc; }
+.news-body ol { list-style: decimal; }
+.news-body li + li { margin-top: 0.4em; }
+.news-body blockquote {
+  border-left: 3px solid var(--primary);
+  padding: 0.4em 1.2em;
+  color: var(--fg-mute);
+  background: var(--bg-soft);
+  border-radius: 0 8px 8px 0;
+}
+.news-body code {
+  font-family: ui-monospace, SFMono-Regular, "SF Mono", Menlo, monospace;
+  font-size: 13px;
+  background: var(--bg-soft);
+  padding: 0.15em 0.4em;
+  border-radius: 4px;
+}
+.news-body pre {
+  background: #0f1d18;
+  color: #e8f7f2;
+  padding: 1.2em 1.4em;
+  border-radius: 12px;
+  overflow-x: auto;
+  font-size: 13px;
+  line-height: 1.7;
+}
+.news-body pre code {
+  background: transparent;
+  padding: 0;
+  color: inherit;
+  font-size: inherit;
+}
+.news-body img {
+  width: 100%;
+  height: auto;
+  border-radius: 12px;
+  margin-block: 0.6em;
+}
+.news-body hr {
+  border: 0;
+  border-top: 1px solid var(--border);
+  margin: 2.4em 0;
+}
+.news-body table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 13.5px;
+}
+.news-body th,
+.news-body td {
+  border: 1px solid var(--border);
+  padding: 0.7em 1em;
+  text-align: left;
+}
+.news-body th {
+  background: var(--bg-soft);
+  font-weight: 700;
+}
+
 @keyframes pulse-soft {
   0%, 100% { opacity: 0.55; transform: scale(1); }
   50% { opacity: 1; transform: scale(1.08); }

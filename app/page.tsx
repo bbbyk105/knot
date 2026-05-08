@@ -1,9 +1,21 @@
 import type { CSSProperties } from "react";
+import type { Metadata } from "next";
 
 import { FloatingCTA } from "./floating-cta";
 import { LottiePlayer } from "./lottie";
 import { ToolsCloud } from "./tools-marquee";
-import { Brand, SiteHeader } from "./subpage-components";
+import { SiteFooter, SiteHeader } from "./subpage-components";
+import {
+  fetchNewsList,
+  formatPublishedDate,
+  getCategoryBadgeStyle,
+  getCategoryName,
+} from "@/lib/microcms";
+import { faqJsonLd, jsonLdScript } from "@/lib/jsonld";
+
+export const metadata: Metadata = {
+  alternates: { canonical: "/" },
+};
 
 const themeVars = {
   "--bg-soft": "#f4f8f6",
@@ -360,11 +372,6 @@ const faqs = [
   },
 ];
 
-const news = [
-  { date: "2026.04.22", cat: "発信", title: "Claude Code × n8nで、受託の見積もり工数を半分にした話を公開しました" },
-  { date: "2026.04.08", cat: "メディア", title: "中小企業向けAI活用メディアに「現場で動くAI導入の進め方」を寄稿しました" },
-  { date: "2026.03.27", cat: "セミナー", title: "n8n勉強会で「業務自動化の実装パターン3選」について登壇しました" },
-];
 
 /* ---------- Layout ---------- */
 
@@ -678,16 +685,16 @@ function CTABanner() {
           </div>
           <div className="flex flex-wrap gap-3 shrink-0">
             <a
-              href="/contact"
+              href="/download"
               className="inline-flex items-center justify-center gap-2 rounded-lg bg-white text-primary px-5 py-3 text-[13px] font-bold hover:bg-primary-soft transition-colors"
             >
-              30分の無料相談を予約
+              資料をダウンロード
             </a>
             <a
-              href="/download"
+              href="/contact"
               className="inline-flex items-center justify-center gap-2 rounded-lg border border-white/40 text-white px-5 py-3 text-[13px] font-bold hover:bg-white/10 transition-colors"
             >
-              資料を見る
+              30分の無料相談
             </a>
           </div>
         </div>
@@ -739,7 +746,8 @@ function AboutSection() {
   );
 }
 
-function NewsSection() {
+async function NewsSection() {
+  const { contents } = await fetchNewsList({ limit: 5 });
   return (
     <section id="news" className="relative py-20 sm:py-24">
       <div className="mx-auto max-w-[1180px] px-5 sm:px-7 lg:px-10">
@@ -756,32 +764,48 @@ function NewsSection() {
             </p>
           </div>
           <div className="lg:col-span-9">
-            <ul className="border-t border-border">
-              {news.map((n) => (
-                <li key={n.title}>
-                  <a
-                    href="/news"
-                    className="flex flex-col gap-2 sm:flex-row sm:items-center sm:gap-6 border-b border-border py-5 group hover:bg-bg-soft/50 transition-colors px-2"
-                  >
-                    <time className="text-[12.5px] text-fg-mute font-medium shrink-0 sm:w-[100px]">
-                      {n.date}
-                    </time>
-                    <span className="rounded-full bg-primary-soft text-primary-text px-3 py-1 text-[11px] font-bold shrink-0 sm:w-20 text-center">
-                      {n.cat}
-                    </span>
-                    <p className="text-[13.5px] sm:text-[14.5px] font-medium leading-[1.55] flex-1 group-hover:text-primary transition-colors">
-                      {n.title}
-                    </p>
+            {contents.length === 0 ? (
+              <p className="rounded-2xl border border-border bg-bg-soft px-6 py-8 text-center text-[13px] text-fg-mute">
+                記事は順次公開予定です。
+              </p>
+            ) : (
+              <>
+                <ul className="border-t border-border">
+                  {contents.map((n) => {
+                    const categoryName = getCategoryName(n.category);
+                    const badge = getCategoryBadgeStyle(categoryName);
+                    return (
+                      <li key={n.id}>
+                        <a
+                          href={`/news/${n.id}`}
+                          className="flex flex-col gap-2 sm:flex-row sm:items-center sm:gap-6 border-b border-border py-5 group hover:bg-bg-soft/50 transition-colors px-2"
+                        >
+                          <time className="text-[12.5px] text-fg-mute font-medium shrink-0 sm:w-[100px]">
+                            {formatPublishedDate(n.publishedAt)}
+                          </time>
+                          {categoryName ? (
+                            <span className={`rounded-full ${badge.bg} ${badge.text} ${badge.ring} px-3 py-1 text-[11px] font-bold shrink-0 sm:w-20 text-center`}>
+                              {categoryName}
+                            </span>
+                          ) : (
+                            <span aria-hidden className="hidden sm:block sm:w-20" />
+                          )}
+                          <p className="text-[13.5px] sm:text-[14.5px] font-medium leading-[1.55] flex-1 group-hover:text-primary transition-colors">
+                            {n.title}
+                          </p>
+                        </a>
+                      </li>
+                    );
+                  })}
+                </ul>
+                <div className="mt-8 flex justify-end">
+                  <a href="/news" className="btn-outline">
+                    ニュース一覧を見る
+                    <IconArrow size={14} />
                   </a>
-                </li>
-              ))}
-            </ul>
-            <div className="mt-8 flex justify-end">
-              <a href="/news" className="btn-outline">
-                ニュース一覧を見る
-                <IconArrow size={14} />
-              </a>
-            </div>
+                </div>
+              </>
+            )}
           </div>
         </div>
       </div>
@@ -789,80 +813,16 @@ function NewsSection() {
   );
 }
 
-function Footer() {
-  return (
-    <footer className="border-t border-border bg-white px-5 sm:px-7 lg:px-10 pt-14 pb-[110px] md:pb-12">
-      <div className="mx-auto max-w-[1180px]">
-        <div className="grid gap-10 md:grid-cols-12">
-          <div className="md:col-span-3 flex flex-col gap-4">
-            <Brand size="sm" />
-            <p className="text-[12.5px] leading-[1.85] text-fg-mute max-w-[280px]">
-              AI導入・業務自動化・Web / EC構築を一気通貫で支援するパートナー。中小企業・個人事業主向け。
-            </p>
-          </div>
-          {[
-            {
-              h: "サービス",
-              items: [
-                { l: "AI活用コンサルティング", h: "/service" },
-                { l: "業務プロセスの可視化", h: "/service" },
-                { l: "AI導入・運用支援", h: "/service" },
-                { l: "人材育成・研修", h: "/service" },
-              ],
-            },
-            {
-              h: "活用シーン",
-              items: [
-                { l: "文章作成・返信", h: "/use-cases" },
-                { l: "資料作成", h: "/use-cases" },
-                { l: "情報整理", h: "/use-cases" },
-                { l: "定型作業の自動化", h: "/use-cases" },
-                { l: "Web・SNS運用", h: "/use-cases" },
-                { l: "業務フロー改善", h: "/use-cases" },
-              ],
-            },
-            {
-              h: "会社情報",
-              items: [
-                { l: "会社概要", h: "/about" },
-                { l: "ブログ", h: "/news" },
-                { l: "お問い合わせ", h: "/contact" },
-              ],
-            },
-            {
-              h: "サポート",
-              items: [
-                { l: "よくある質問", h: "/faq" },
-                { l: "お問い合わせ", h: "/contact" },
-                { l: "プライバシーポリシー", h: "#" },
-              ],
-            },
-          ].map((col) => (
-            <div key={col.h} className="md:col-span-2 lg:col-span-2">
-              <p className="font-bold text-[13px] mb-4">{col.h}</p>
-              <ul className="flex flex-col gap-2.5 text-[12.5px] text-fg-mute">
-                {col.items.map((it) => (
-                  <li key={it.l}>
-                    <a href={it.h} className="hover:text-primary transition-colors">
-                      {it.l}
-                    </a>
-                  </li>
-                ))}
-              </ul>
-            </div>
-          ))}
-        </div>
-        <div className="mt-12 pt-6 border-t border-border flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between text-xs text-fg-faint">
-          <span>© 2026 Knot. All Rights Reserved.</span>
-        </div>
-      </div>
-    </footer>
-  );
-}
 
 export default function Home() {
   return (
     <div className="relative flex min-h-screen flex-col" style={themeVars}>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: jsonLdScript(faqJsonLd(faqs.map((f) => ({ q: f.q, a: f.a })))),
+        }}
+      />
       <SiteHeader />
       <main className="flex-1">
         <Hero />
@@ -876,7 +836,7 @@ export default function Home() {
         <AboutSection />
         <NewsSection />
       </main>
-      <Footer />
+      <SiteFooter extraBottomPadding />
       <FloatingCTA />
     </div>
   );

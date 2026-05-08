@@ -1,3 +1,4 @@
+import type { Metadata } from "next";
 import {
   CTABanner,
   ContentSection,
@@ -8,10 +9,35 @@ import {
   industries,
   useCaseItems,
 } from "../subpage-components";
+import { breadcrumbJsonLd, jsonLdScript } from "@/lib/jsonld";
+
+export const metadata: Metadata = {
+  title: "活用シーン｜AIで効率化できる業務例",
+  description:
+    "文章作成・資料作成・情報整理・定型作業の自動化・Web/SNS運用・業務フロー改善など、Knotで実現できるAI活用シーンを業種別・業務別に紹介します。",
+  alternates: { canonical: "/use-cases" },
+  openGraph: {
+    title: "活用シーン｜Knot",
+    description:
+      "中小企業・個人事業主向けに、日々の業務で使えるAI活用シーンを紹介。",
+    url: "/use-cases",
+  },
+};
 
 export default function UseCasesPage() {
   return (
     <SubPageShell>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: jsonLdScript(
+            breadcrumbJsonLd([
+              { name: "ホーム", path: "/" },
+              { name: "活用シーン", path: "/use-cases" },
+            ]),
+          ),
+        }}
+      />
       <PageHero
         label="USE CASES"
         title="難しいAI導入ではなく、日々の業務で使えるところから仕組み化します。"

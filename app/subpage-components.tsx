@@ -148,53 +148,6 @@ export const faqItems = [
   },
 ];
 
-export const newsItems = [
-  {
-    date: "2026.04.22",
-    cat: "発信",
-    title:
-      "Claude Code x n8nで、受託の見積もり工数を半分にした話を公開しました",
-    excerpt:
-      "受託案件で必ず発生する見積もり作業を、AIエージェントとワークフロー連携で半自動化した実装ログ。",
-  },
-  {
-    date: "2026.04.08",
-    cat: "メディア",
-    title: "中小企業向けAI活用メディアに現場で動くAI導入の進め方を寄稿しました",
-    excerpt:
-      "ツール導入で終わらせない、現場が継続的に使える状態まで持っていくための実践的なステップを解説。",
-  },
-  {
-    date: "2026.03.27",
-    cat: "セミナー",
-    title: "n8n勉強会で業務自動化の実装パターン3選について登壇しました",
-    excerpt:
-      "中小企業の現場で実際に使われている、汎用的に効く3つの自動化テンプレートを公開。",
-  },
-  {
-    date: "2026.03.05",
-    cat: "発信",
-    title: "属人化した業務をAIで標準化するときの落とし穴",
-    excerpt:
-      "属人化の解消だけを目的にすると逆効果になりがち。本質を捉えるための観点を整理。",
-  },
-  {
-    date: "2026.02.18",
-    cat: "事例",
-    title: "問い合わせ対応の一次返信を自動化し、応答時間を1/4にした事例",
-    excerpt:
-      "ナレッジを整理しながらAIで一次返信を生成。担当者の判断に集中できる体制へ。",
-  },
-];
-
-export const newsCategories = [
-  "すべて",
-  "発信",
-  "メディア",
-  "セミナー",
-  "事例",
-];
-
 export const members = [
   {
     name: "Byakko Kondo",
@@ -302,7 +255,7 @@ export const downloadContents = [
 ];
 
 export function Brand({ size = "md" }: { size?: "sm" | "md" }) {
-  const heightClass = size === "sm" ? "h-9 sm:h-10" : "h-10 sm:h-11";
+  const heightClass = size === "sm" ? "h-11 sm:h-12" : "h-13 sm:h-14";
   return (
     <Link href="/" aria-label="Knot AI" className="inline-flex select-none">
       <Image
@@ -330,21 +283,131 @@ export function SiteHeader() {
   );
 }
 
-export function SiteFooter() {
+const footerLinkColumns: Array<{
+  heading: string;
+  items: Array<{ label: string; href: string }>;
+}> = [
+  {
+    heading: "サービス",
+    items: [
+      { label: "AI活用コンサルティング", href: "/service" },
+      { label: "業務プロセスの可視化", href: "/service" },
+      { label: "AI導入・運用支援", href: "/service" },
+      { label: "人材育成・研修", href: "/service" },
+    ],
+  },
+  {
+    heading: "活用シーン",
+    items: [
+      { label: "文章作成・返信", href: "/use-cases" },
+      { label: "資料作成", href: "/use-cases" },
+      { label: "情報整理", href: "/use-cases" },
+      { label: "定型作業の自動化", href: "/use-cases" },
+      { label: "Web・SNS運用", href: "/use-cases" },
+      { label: "業務フロー改善", href: "/use-cases" },
+    ],
+  },
+  {
+    heading: "会社情報",
+    items: [
+      { label: "会社概要", href: "/about" },
+      { label: "ブログ", href: "/news" },
+      { label: "お問い合わせ", href: "/contact" },
+    ],
+  },
+  {
+    heading: "サポート",
+    items: [
+      { label: "よくある質問", href: "/faq" },
+      { label: "お問い合わせ", href: "/contact" },
+      { label: "プライバシーポリシー", href: "#" },
+    ],
+  },
+];
+
+export function SiteFooter({
+  extraBottomPadding = false,
+}: {
+  extraBottomPadding?: boolean;
+} = {}) {
   return (
-    <footer className="border-t border-border bg-white px-5 sm:px-7 lg:px-10 py-10">
-      <div className="mx-auto flex max-w-[1180px] flex-col gap-6 sm:flex-row sm:items-center sm:justify-between">
-        <Brand size="sm" />
-        <div className="flex flex-wrap gap-x-5 gap-y-2 text-[12.5px] text-fg-mute">
-          {navLinks.map((link) => (
+    <footer
+      className={`border-t border-border bg-white px-5 pt-14 sm:px-7 lg:px-10 ${
+        extraBottomPadding ? "pb-[110px] md:pb-12" : "pb-12"
+      }`}
+    >
+      <div className="mx-auto max-w-[1180px]">
+        <div className="grid gap-10 md:grid-cols-12">
+          <div className="flex flex-col gap-4 md:col-span-3">
+            <Brand size="sm" />
+            <p className="max-w-[280px] text-[12.5px] leading-[1.85] text-fg-mute">
+              AI導入・業務自動化・Web / EC構築を一気通貫で支援するパートナー。中小企業・個人事業主向け。
+            </p>
             <Link
-              key={link.href}
-              href={link.href}
-              className="hover:text-primary"
+              href="/contact"
+              className="mt-2 inline-flex w-fit items-center gap-2 text-[12.5px] font-bold text-primary transition-all hover:gap-3"
             >
-              {link.label}
+              30分の無料相談を予約
+              <svg
+                width="12"
+                height="12"
+                viewBox="0 0 16 16"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth="1.6"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                aria-hidden
+              >
+                <path d="M3 8h10" />
+                <path d="M9 4l4 4-4 4" />
+              </svg>
             </Link>
+          </div>
+          {footerLinkColumns.map((col) => (
+            <div key={col.heading} className="md:col-span-2 lg:col-span-2">
+              <p className="mb-4 text-[13px] font-bold text-ink">
+                {col.heading}
+              </p>
+              <ul className="flex flex-col gap-2.5 text-[12.5px] text-fg-mute">
+                {col.items.map((it) => (
+                  <li key={it.label}>
+                    <Link
+                      href={it.href}
+                      className="transition-colors hover:text-primary"
+                    >
+                      {it.label}
+                    </Link>
+                  </li>
+                ))}
+              </ul>
+            </div>
           ))}
+        </div>
+        <div className="mt-12 flex flex-col gap-3 border-t border-border pt-6 text-xs text-fg-faint sm:flex-row sm:items-center sm:justify-between">
+          <span>© 2026 Knot. All Rights Reserved.</span>
+          <span className="flex flex-wrap items-center gap-3">
+            <Link href="/about" className="hover:text-fg">
+              会社概要
+            </Link>
+            <span
+              aria-hidden
+              className="size-1 rounded-full bg-border-strong"
+            />
+            <Link href="#" className="hover:text-fg">
+              プライバシーポリシー
+            </Link>
+            <span
+              aria-hidden
+              className="size-1 rounded-full bg-border-strong"
+            />
+            <a
+              href="mailto:byakkokondo@gmail.com"
+              className="hover:text-fg"
+            >
+              byakkokondo@gmail.com
+            </a>
+          </span>
         </div>
       </div>
     </footer>

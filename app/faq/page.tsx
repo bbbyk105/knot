@@ -1,3 +1,4 @@
+import type { Metadata } from "next";
 import Link from "next/link";
 import {
   CTABanner,
@@ -7,8 +8,21 @@ import {
   SubPageShell,
   faqItems,
 } from "../subpage-components";
+import { breadcrumbJsonLd, faqJsonLd, jsonLdScript } from "@/lib/jsonld";
 
 const categoryOrder = ["サービス全般", "期間", "料金", "導入後"];
+
+export const metadata: Metadata = {
+  title: "よくあるご質問",
+  description:
+    "Knotへのご相談前に多くいただく、費用感・期間・運用・セキュリティについての質問とその回答をまとめました。",
+  alternates: { canonical: "/faq" },
+  openGraph: {
+    title: "よくあるご質問｜Knot",
+    description: "AI導入のご相談前に確認したい、頻出10問の回答をまとめました。",
+    url: "/faq",
+  },
+};
 
 export default function FaqPage() {
   const grouped = categoryOrder.map((cat) => ({
@@ -18,6 +32,23 @@ export default function FaqPage() {
 
   return (
     <SubPageShell>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: jsonLdScript(
+            breadcrumbJsonLd([
+              { name: "ホーム", path: "/" },
+              { name: "よくある質問", path: "/faq" },
+            ]),
+          ),
+        }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: jsonLdScript(faqJsonLd(faqItems.map((f) => ({ q: f.q, a: f.a })))),
+        }}
+      />
       <PageHero
         label="FAQ"
         title="ご相談前に、よくいただく質問。"

@@ -1,3 +1,4 @@
+import type { Metadata } from "next";
 import {
   CTABanner,
   ContentSection,
@@ -9,10 +10,35 @@ import {
   members,
   milestones,
 } from "../subpage-components";
+import { breadcrumbJsonLd, jsonLdScript } from "@/lib/jsonld";
+
+export const metadata: Metadata = {
+  title: "会社情報",
+  description:
+    "Knotの会社情報。AI導入・業務自動化・Web / EC構築を一気通貫で支援する小さなチームの考え方、メンバー、沿革を紹介します。",
+  alternates: { canonical: "/about" },
+  openGraph: {
+    title: "会社情報｜Knot",
+    description:
+      "AI導入・業務自動化・Web / EC構築を一気通貫で支援する Knot の会社情報。",
+    url: "/about",
+  },
+};
 
 export default function AboutPage() {
   return (
     <SubPageShell>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: jsonLdScript(
+            breadcrumbJsonLd([
+              { name: "ホーム", path: "/" },
+              { name: "会社情報", path: "/about" },
+            ]),
+          ),
+        }}
+      />
       <PageHero
         label="ABOUT"
         title="AIで、毎日の作業を本当に減らす。"

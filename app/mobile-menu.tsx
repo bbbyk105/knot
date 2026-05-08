@@ -77,7 +77,7 @@ export function NavDrawer() {
                 width={1254}
                 height={1254}
                 priority
-                className="h-10 w-auto sm:h-11"
+                className="h-13 w-auto sm:h-14"
               />
             </Link>
             <button
@@ -145,18 +145,18 @@ export function NavDrawer() {
           <div className="shrink-0 border-t border-border bg-bg-soft px-5 py-6 sm:px-7 sm:py-8">
             <div className="mx-auto flex max-w-[720px] flex-col gap-3 sm:flex-row">
               <Link
-                href="/download"
+                href="/contact"
                 onClick={() => setOpen(false)}
                 className="btn-primary w-full sm:flex-1"
               >
-                資料をダウンロードする
+                30分の無料相談
               </Link>
               <Link
-                href="/contact"
+                href="/download"
                 onClick={() => setOpen(false)}
                 className="btn-outline w-full sm:flex-1"
               >
-                お問い合わせ
+                資料をダウンロード
               </Link>
             </div>
           </div>
