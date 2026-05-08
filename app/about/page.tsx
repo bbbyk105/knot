@@ -15,8 +15,8 @@ export default function AboutPage() {
     <SubPageShell>
       <PageHero
         label="ABOUT"
-        title="信念を技術で支え、未来の当たり前をつくる。"
-        description="Knotは、AIと業務プロセスの最適化により、人と組織がより創造的に働ける状態を支援するチームです。"
+        title="AIで、毎日の作業を本当に減らす。"
+        description="Knotは、AI導入・業務自動化・Web / EC構築を一気通貫で支援する小さなチームです。流行りのAIに乗るのではなく、現場で本当に使える形に整え、毎日の負担を確実に減らします。"
       />
 
       <ContentSection>
@@ -25,7 +25,7 @@ export default function AboutPage() {
           title="現場で使える形に整えて、毎日の時間を取り戻す。"
           description="ツールを入れること自体ではなく、現場が継続的に使い続けられる状態をゴールに置いています。"
         />
-        <div className="mt-12 grid gap-5 lg:grid-cols-3">
+        <div className="mt-12 grid gap-5 md:grid-cols-3">
           {[
             {
               title: "Mission",
@@ -41,8 +41,8 @@ export default function AboutPage() {
             },
           ].map((item) => (
             <article key={item.title} className="card p-7">
-              <h3 className="font-kanit text-[18px] text-[var(--primary)]">{item.title}</h3>
-              <p className="mt-3 text-[13.5px] leading-[1.9] text-[var(--fg-mute)]">{item.body}</p>
+              <h3 className="font-kanit text-lg text-primary">{item.title}</h3>
+              <p className="mt-3 text-[13.5px] leading-[1.9] text-fg-mute">{item.body}</p>
             </article>
           ))}
         </div>
@@ -71,8 +71,8 @@ export default function AboutPage() {
           <ol className="grid gap-5">
             {milestones.map((m) => (
               <li key={m.year} className="card grid gap-3 p-6 sm:grid-cols-[120px_1fr] sm:items-start sm:gap-6">
-                <span className="font-kanit text-[28px] leading-none text-[var(--primary)]">{m.year}</span>
-                <p className="text-[13.5px] leading-[1.9] text-[var(--fg-mute)]">{m.body}</p>
+                <span className="font-kanit text-[28px] leading-none text-primary">{m.year}</span>
+                <p className="text-[13.5px] leading-[1.9] text-fg-mute">{m.body}</p>
               </li>
             ))}
           </ol>
@@ -81,16 +81,16 @@ export default function AboutPage() {
 
       <ContentSection tone="soft">
         <SectionHeading eyebrow="COMPANY" title="会社情報" />
-        <dl className="mt-10 overflow-hidden rounded-2xl border border-[var(--border)] bg-white">
+        <dl className="mt-10 overflow-hidden rounded-2xl border border-border bg-white">
           {companyInfo.map(([label, value], idx) => (
             <div
               key={label}
               className={`grid gap-1 px-6 py-5 sm:grid-cols-[200px_1fr] sm:gap-6 ${
-                idx !== companyInfo.length - 1 ? "border-b border-[var(--border)]" : ""
+                idx !== companyInfo.length - 1 ? "border-b border-border" : ""
               }`}
             >
-              <dt className="text-[12.5px] font-bold tracking-[0.04em] text-[var(--fg-mute)]">{label}</dt>
-              <dd className="text-[13.5px] leading-[1.85] text-[var(--ink)]">{value}</dd>
+              <dt className="text-[12.5px] font-bold tracking-[0.04em] text-fg-mute">{label}</dt>
+              <dd className="text-[13.5px] leading-[1.85] text-ink">{value}</dd>
             </div>
           ))}
         </dl>

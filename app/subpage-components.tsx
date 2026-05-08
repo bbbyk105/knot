@@ -1,6 +1,7 @@
 import type { CSSProperties, ReactNode } from "react";
 import Link from "next/link";
 import Image from "next/image";
+import { NavDrawer } from "./mobile-menu";
 
 export const themeVars = {
   "--bg-soft": "#f4f8f6",
@@ -40,38 +41,56 @@ export const serviceItems = [
 ];
 
 export const useCaseItems = [
-  { title: "営業・マーケティング", desc: "提案資料、リード整理、商談メモ、レポート作成を効率化します。" },
-  { title: "カスタマーサポート", desc: "問い合わせ分類、回答案作成、ナレッジ整備を支援します。" },
-  { title: "人事・採用", desc: "応募者対応、日程調整、求人文面の改善に活用できます。" },
-  { title: "経理・財務", desc: "請求書処理、集計、月次レポートの作成負担を減らします。" },
-  { title: "情報システム", desc: "社内問い合わせ、手順書整備、運用業務の標準化に役立ちます。" },
-  { title: "経営・企画", desc: "データ整理や意思決定資料の作成をスピードアップします。" },
+  {
+    title: "文章作成・返信",
+    desc: "メール、問い合わせ対応、提案文、SNS投稿などをAIで下書きします。",
+  },
+  {
+    title: "資料作成",
+    desc: "議事録、報告書、営業資料、説明資料の作成を効率化します。",
+  },
+  {
+    title: "情報整理",
+    desc: "メモ、顧客情報、社内資料、調査内容をわかりやすく整理します。",
+  },
+  {
+    title: "定型作業の自動化",
+    desc: "入力、転記、通知、集計などの繰り返し作業を自動化します。",
+  },
+  {
+    title: "Web・SNS運用",
+    desc: "LP改善、投稿作成、導線設計、キャンペーン案づくりを支援します。",
+  },
+  {
+    title: "業務フロー改善",
+    desc: "今の作業の流れを見直し、AIを使いやすい形に整えます。",
+  },
 ];
 
 export const flowItems = [
   {
     title: "ヒアリング・課題整理",
-    desc: "現状の業務、困っていること、目標を整理します。",
+    desc: "現状の業務とゴールを整理し、改善できる箇所を洗い出します。",
     duration: "1〜2週間",
   },
   {
     title: "ご提案・方針設計",
-    desc: "効果が出やすい領域から、導入範囲と進め方を決めます。",
+    desc: "効果が出やすい領域から、導入範囲とプランをご提案します。",
     duration: "1〜2週間",
   },
   {
-    title: "導入・環境構築",
-    desc: "ツール設定、業務フロー、利用ルールを整備します。",
+    title: "構築・実装",
+    desc: "ツール選定、初期設定、ワークフロー設計までを一気通貫で実装します。",
     duration: "2〜4週間",
   },
   {
-    title: "運用・定着支援",
-    desc: "使いながら改善し、現場で続く形に調整します。",
+    title: "導入・定着支援",
+    desc: "現場で使い続けられる形に調整し、社内展開までサポートします。",
     duration: "1〜3ヶ月",
   },
   {
-    title: "効果測定・改善",
-    desc: "削減時間や成果を確認し、次の改善につなげます。",
+    title: "保守運用",
+    desc: "公開・導入後も継続的に運用サポートと改善を行います。",
     duration: "継続",
   },
 ];
@@ -133,36 +152,48 @@ export const newsItems = [
   {
     date: "2026.04.22",
     cat: "発信",
-    title: "Claude Code x n8nで、受託の見積もり工数を半分にした話を公開しました",
-    excerpt: "受託案件で必ず発生する見積もり作業を、AIエージェントとワークフロー連携で半自動化した実装ログ。",
+    title:
+      "Claude Code x n8nで、受託の見積もり工数を半分にした話を公開しました",
+    excerpt:
+      "受託案件で必ず発生する見積もり作業を、AIエージェントとワークフロー連携で半自動化した実装ログ。",
   },
   {
     date: "2026.04.08",
     cat: "メディア",
     title: "中小企業向けAI活用メディアに現場で動くAI導入の進め方を寄稿しました",
-    excerpt: "ツール導入で終わらせない、現場が継続的に使える状態まで持っていくための実践的なステップを解説。",
+    excerpt:
+      "ツール導入で終わらせない、現場が継続的に使える状態まで持っていくための実践的なステップを解説。",
   },
   {
     date: "2026.03.27",
     cat: "セミナー",
     title: "n8n勉強会で業務自動化の実装パターン3選について登壇しました",
-    excerpt: "中小企業の現場で実際に使われている、汎用的に効く3つの自動化テンプレートを公開。",
+    excerpt:
+      "中小企業の現場で実際に使われている、汎用的に効く3つの自動化テンプレートを公開。",
   },
   {
     date: "2026.03.05",
     cat: "発信",
     title: "属人化した業務をAIで標準化するときの落とし穴",
-    excerpt: "属人化の解消だけを目的にすると逆効果になりがち。本質を捉えるための観点を整理。",
+    excerpt:
+      "属人化の解消だけを目的にすると逆効果になりがち。本質を捉えるための観点を整理。",
   },
   {
     date: "2026.02.18",
     cat: "事例",
     title: "問い合わせ対応の一次返信を自動化し、応答時間を1/4にした事例",
-    excerpt: "ナレッジを整理しながらAIで一次返信を生成。担当者の判断に集中できる体制へ。",
+    excerpt:
+      "ナレッジを整理しながらAIで一次返信を生成。担当者の判断に集中できる体制へ。",
   },
 ];
 
-export const newsCategories = ["すべて", "発信", "メディア", "セミナー", "事例"];
+export const newsCategories = [
+  "すべて",
+  "発信",
+  "メディア",
+  "セミナー",
+  "事例",
+];
 
 export const members = [
   {
@@ -170,23 +201,28 @@ export const members = [
     nameJa: "近藤 白虎",
     role: "Engineer / 代表",
     photo: "/images/member-byakko-kondo.png",
-    bio: "AIエージェントと業務フローの設計が専門。現場の手触りを大事に、すぐ動かせる仕組みづくりを得意とする。",
-    skills: ["Claude / Anthropic API", "n8n / Workflow", "Next.js / Supabase"],
+    bio: "AI・自動化・Web/ECを軸に、企業から個人事業主までの業務をリデザインするエンジニア。Claude Code・n8n・OpenClaw・Shopifyを駆使し、戦略設計から実装・運用までを一気通貫で担う。流行りに乗ったAIではなく、現場で本当に使えるAI活用を信条に、毎日の作業負担を確実に減らす仕組みづくりを続けている。",
+    skills: ["Claude Code / AI Agent", "n8n / OpenClaw", "Shopify / Next.js"],
   },
   {
     name: "Shogo Kikuchi",
     nameJa: "菊地 翔吾",
     role: "Engineer",
     photo: "/images/member-shogo-kikuchi.png",
-    bio: "Webアプリと業務システムの実装担当。要件のすり合わせから運用まで、地に足のついた開発を進める。",
-    skills: ["Next.js / TypeScript", "Backend / DB", "DevOps / Deploy"],
+    bio: "株式会社メルカリにてPMとしてプロダクトの企画・改善を主導。ByteDanceではTikTok Shopのポリシー設計・ガバナンス領域に携わり、グローバルECにおける運用基準づくりを実践。事業戦略・プロダクト・ルール設計まで横断的に捉える視点で、Knotの上流工程をリードする。",
+    skills: [
+      "Product Strategy",
+      "Policy / Governance",
+      "Global EC / Cross-border",
+    ],
   },
 ];
 
 export const milestones = [
-  { year: "2024", body: "Knotとして活動開始。AI導入相談・PoC支援を中心に受託を開始。" },
-  { year: "2025", body: "業務自動化の運用支援メニューを正式リリース。月額伴走モデルを確立。" },
-  { year: "2026", body: "Web / EC構築・LP制作とAI支援を統合し、一気通貫の支援体制へ。" },
+  {
+    year: "2026",
+    body: "Knotとして活動開始。AI導入・業務自動化・Web / EC構築まで一気通貫で支援する体制を立ち上げ。",
+  },
 ];
 
 export const companyInfo = [
@@ -197,40 +233,28 @@ export const companyInfo = [
   ["連絡先", "byakkokondo@gmail.com"],
 ];
 
-export const pricingTiers = [
-  {
-    name: "Spotプラン",
-    price: "¥150,000〜",
-    unit: "/ 1案件",
-    desc: "業務の整理〜小さな自動化まで、1案件単位で完結させたい方向け。",
-    features: ["業務ヒアリング", "1業務の自動化実装", "運用マニュアル納品"],
-    highlight: false,
-  },
-  {
-    name: "伴走プラン",
-    price: "¥80,000〜",
-    unit: "/ 月",
-    desc: "現場の改善を継続的に進めたいチーム向け。月額で伴走します。",
-    features: ["月2回の定例", "改善実装と運用調整", "Slack/メールでの随時相談"],
-    highlight: true,
-  },
-  {
-    name: "構築プラン",
-    price: "¥500,000〜",
-    unit: "/ プロジェクト",
-    desc: "Webサイト・LP・ECなど、まとまった構築案件向け。",
-    features: ["要件定義〜実装", "公開後3ヶ月の保守", "計測/改善設計込み"],
-    highlight: false,
-  },
-];
-
 export const industries = [
-  { name: "製造・物流", desc: "発注・在庫・出荷帳票の自動化、属人化した手順の標準化。" },
-  { name: "医療・介護", desc: "問い合わせ一次対応、書類作成、シフト調整の効率化。" },
-  { name: "士業・専門サービス", desc: "資料作成、面談メモ整理、知識検索の高速化。" },
+  {
+    name: "製造・物流",
+    desc: "発注・在庫・出荷帳票の自動化、属人化した手順の標準化。",
+  },
+  {
+    name: "医療・介護",
+    desc: "問い合わせ一次対応、書類作成、シフト調整の効率化。",
+  },
+  {
+    name: "士業・専門サービス",
+    desc: "資料作成、面談メモ整理、知識検索の高速化。",
+  },
   { name: "EC・小売", desc: "商品説明文、カスタマー対応、在庫連携の効率化。" },
-  { name: "教育・研修", desc: "教材作成、進捗フォロー、保護者連絡の半自動化。" },
-  { name: "不動産・建設", desc: "図面・書類整理、見積もり作成、現場連絡の標準化。" },
+  {
+    name: "教育・研修",
+    desc: "教材作成、進捗フォロー、保護者連絡の半自動化。",
+  },
+  {
+    name: "不動産・建設",
+    desc: "図面・書類整理、見積もり作成、現場連絡の標準化。",
+  },
 ];
 
 export const beforeAfter = [
@@ -255,56 +279,51 @@ export const beforeAfter = [
 ];
 
 export const downloadContents = [
-  { title: "サービス全体像", desc: "Knotが対応している領域と、得意な進め方をまとめています。" },
-  { title: "活用シーン例", desc: "部門別・業界別のAI活用例と、想定される効果を紹介します。" },
-  { title: "導入までの流れ", desc: "初回相談から運用まで、各ステップでやることを整理しています。" },
-  { title: "料金プランの目安", desc: "Spot / 伴走 / 構築プランのレンジと、選び方の指針を掲載。" },
-  { title: "よくある質問", desc: "ご相談前に多くいただく質問と、その回答をまとめています。" },
+  {
+    title: "サービス全体像",
+    desc: "Knotが対応している領域と、得意な進め方をまとめています。",
+  },
+  {
+    title: "活用シーン例",
+    desc: "部門別・業界別のAI活用例と、想定される効果を紹介します。",
+  },
+  {
+    title: "導入までの流れ",
+    desc: "初回相談から運用まで、各ステップでやることを整理しています。",
+  },
+  {
+    title: "ご相談から導入までの流れ",
+    desc: "初回相談から提案・実装・運用までの進め方を整理しています。",
+  },
+  {
+    title: "よくある質問",
+    desc: "ご相談前に多くいただく質問と、その回答をまとめています。",
+  },
 ];
 
-function Brand() {
+export function Brand({ size = "md" }: { size?: "sm" | "md" }) {
+  const heightClass = size === "sm" ? "h-9 sm:h-10" : "h-10 sm:h-11";
   return (
-    <Link href="/" aria-label="Knot" className="inline-flex items-center gap-2.5 select-none">
-      <svg width="26" height="26" viewBox="0 0 28 28" aria-hidden>
-        <path
-          d="M6 21V7L22 21V7"
-          stroke="#12aa84"
-          strokeWidth="2.6"
-          strokeLinecap="round"
-          strokeLinejoin="round"
-          fill="none"
-        />
-      </svg>
-      <span className="font-bold text-[18px] text-[var(--ink)]">Knot</span>
+    <Link href="/" aria-label="Knot AI" className="inline-flex select-none">
+      <Image
+        src="/images/logo.png"
+        alt="Knot AI"
+        width={1254}
+        height={1254}
+        priority
+        className={`${heightClass} w-auto`}
+      />
     </Link>
   );
 }
 
 export function SiteHeader() {
   return (
-    <header className="sticky top-0 z-30 border-b border-[var(--border)] bg-white/90 backdrop-blur-md">
+    <header className="sticky top-0 z-30 border-b border-border bg-white">
       <div className="mx-auto max-w-[1180px] px-5 sm:px-7 lg:px-10">
-        <div className="flex h-[64px] items-center justify-between gap-4">
+        <div className="flex h-16 items-center justify-between gap-4">
           <Brand />
-          <nav className="hidden lg:flex items-center gap-7">
-            {navLinks.map((link) => (
-              <Link
-                key={link.href}
-                href={link.href}
-                className="text-[13px] font-medium text-[var(--fg)] hover:text-[var(--primary)] transition-colors"
-              >
-                {link.label}
-              </Link>
-            ))}
-          </nav>
-          <div className="flex items-center gap-2">
-            <Link href="/download" className="hidden sm:inline-flex btn-primary text-[12.5px] py-2.5 px-4">
-              資料ダウンロードする
-            </Link>
-            <Link href="/contact" className="inline-flex btn-outline text-[12.5px] py-2.5 px-4">
-              お問い合わせ
-            </Link>
-          </div>
+          <NavDrawer />
         </div>
       </div>
     </header>
@@ -313,12 +332,16 @@ export function SiteHeader() {
 
 export function SiteFooter() {
   return (
-    <footer className="border-t border-[var(--border)] bg-white px-5 sm:px-7 lg:px-10 py-10">
+    <footer className="border-t border-border bg-white px-5 sm:px-7 lg:px-10 py-10">
       <div className="mx-auto flex max-w-[1180px] flex-col gap-6 sm:flex-row sm:items-center sm:justify-between">
-        <Brand />
-        <div className="flex flex-wrap gap-x-5 gap-y-2 text-[12.5px] text-[var(--fg-mute)]">
+        <Brand size="sm" />
+        <div className="flex flex-wrap gap-x-5 gap-y-2 text-[12.5px] text-fg-mute">
           {navLinks.map((link) => (
-            <Link key={link.href} href={link.href} className="hover:text-[var(--primary)]">
+            <Link
+              key={link.href}
+              href={link.href}
+              className="hover:text-primary"
+            >
               {link.label}
             </Link>
           ))}
@@ -348,13 +371,15 @@ export function PageHero({
   description: string;
 }) {
   return (
-    <section className="bg-linear-to-b from-[var(--bg-tint)] to-white px-5 py-16 sm:px-7 sm:py-20 lg:px-10">
+    <section className="bg-linear-to-b from-bg-tint to-white px-5 py-16 sm:px-7 sm:py-20 lg:px-10">
       <div className="mx-auto max-w-[1180px]">
-        <p className="font-kanit text-[13px] tracking-[0.18em] text-[var(--primary)]">{label}</p>
-        <h1 className="mt-4 max-w-[720px] text-[30px] font-bold leading-[1.35] text-[var(--ink)] sm:text-[40px]">
+        <p className="font-kanit text-[13px] tracking-[0.18em] text-primary">
+          {label}
+        </p>
+        <h1 className="mt-4 max-w-[720px] text-3xl font-bold leading-[1.35] text-ink sm:text-[40px]">
           {title}
         </h1>
-        <p className="mt-5 max-w-[640px] text-[14px] leading-[1.9] text-[var(--fg-mute)] sm:text-[15px]">
+        <p className="mt-5 max-w-[640px] text-sm leading-[1.9] text-fg-mute sm:text-[15px]">
           {description}
         </p>
       </div>
@@ -362,13 +387,21 @@ export function PageHero({
   );
 }
 
-export function CardsGrid({ items }: { items: Array<{ title: string; desc: string }> }) {
+export function CardsGrid({
+  items,
+}: {
+  items: Array<{ title: string; desc: string }>;
+}) {
   return (
     <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
       {items.map((item) => (
         <article key={item.title} className="card p-7">
-          <h2 className="text-[16px] font-bold leading-[1.5] text-[var(--ink)]">{item.title}</h2>
-          <p className="mt-3 text-[13px] leading-[1.85] text-[var(--fg-mute)]">{item.desc}</p>
+          <h2 className="text-base font-bold leading-normal text-ink">
+            {item.title}
+          </h2>
+          <p className="mt-3 text-[13px] leading-[1.85] text-fg-mute">
+            {item.desc}
+          </p>
         </article>
       ))}
     </div>
@@ -382,7 +415,7 @@ export function ContentSection({
   children: ReactNode;
   tone?: "default" | "soft";
 }) {
-  const bg = tone === "soft" ? "bg-[var(--bg-soft)]" : "";
+  const bg = tone === "soft" ? "bg-bg-soft" : "";
   return (
     <section className={`px-5 py-16 sm:px-7 sm:py-20 lg:px-10 ${bg}`}>
       <div className="mx-auto max-w-[1180px]">{children}</div>
@@ -405,13 +438,17 @@ export function SectionHeading({
   return (
     <div className={`max-w-[720px] ${a}`}>
       {eyebrow ? (
-        <p className="font-kanit text-[12px] tracking-[0.18em] text-[var(--primary)]">{eyebrow}</p>
+        <p className="font-kanit text-xs tracking-[0.18em] text-primary">
+          {eyebrow}
+        </p>
       ) : null}
-      <h2 className="mt-3 text-[22px] font-bold leading-[1.4] text-[var(--ink)] sm:text-[28px]">
+      <h2 className="mt-3 text-[22px] font-bold leading-[1.4] text-ink sm:text-[28px]">
         {title}
       </h2>
       {description ? (
-        <p className="mt-4 text-[13.5px] leading-[1.9] text-[var(--fg-mute)]">{description}</p>
+        <p className="mt-4 text-[13.5px] leading-[1.9] text-fg-mute">
+          {description}
+        </p>
       ) : null}
     </div>
   );
@@ -434,7 +471,7 @@ export function MemberCard({
 }) {
   return (
     <article className="card overflow-hidden">
-      <div className="relative aspect-square w-full bg-[var(--bg-soft)]">
+      <div className="relative aspect-square w-full bg-bg-soft">
         <Image
           src={photo}
           alt={`${name} のポートレート`}
@@ -445,15 +482,19 @@ export function MemberCard({
         />
       </div>
       <div className="p-7">
-        <p className="font-kanit text-[12px] tracking-[0.16em] text-[var(--primary)]">{role}</p>
-        <h3 className="mt-2 text-[20px] font-bold leading-[1.3] text-[var(--ink)]">{name}</h3>
-        <p className="mt-1 text-[12.5px] text-[var(--fg-mute)]">{nameJa}</p>
-        <p className="mt-4 text-[13px] leading-[1.85] text-[var(--fg-mute)]">{bio}</p>
+        <p className="font-kanit text-xs tracking-[0.16em] text-primary">
+          {role}
+        </p>
+        <h3 className="mt-2 text-xl font-bold leading-[1.3] text-ink">
+          {name}
+        </h3>
+        <p className="mt-1 text-[12.5px] text-fg-mute">{nameJa}</p>
+        <p className="mt-4 text-[13px] leading-[1.85] text-fg-mute">{bio}</p>
         <ul className="mt-5 flex flex-wrap gap-2">
           {skills.map((s) => (
             <li
               key={s}
-              className="rounded-full bg-[var(--bg-soft)] px-3 py-1 text-[11.5px] font-medium text-[var(--fg)]"
+              className="rounded-full bg-bg-soft px-3 py-1 text-[11.5px] font-medium text-fg"
             >
               {s}
             </li>
@@ -473,18 +514,20 @@ export function CTABanner({
 }) {
   return (
     <section className="px-5 pb-20 sm:px-7 lg:px-10">
-      <div className="mx-auto max-w-[1180px] rounded-2xl bg-[var(--primary)] px-6 py-10 text-white sm:px-10 sm:py-12">
+      <div className="mx-auto max-w-[1180px] rounded-2xl bg-primary px-6 py-10 text-white sm:px-10 sm:py-12">
         <div className="flex flex-col gap-6 lg:flex-row lg:items-center lg:justify-between">
           <div>
-            <h2 className="text-[20px] font-bold leading-[1.45] sm:text-[24px]">{title}</h2>
-            <p className="mt-3 text-[13px] leading-[1.85] text-white/85 sm:text-[14px]">
+            <h2 className="text-xl font-bold leading-[1.45] sm:text-2xl">
+              {title}
+            </h2>
+            <p className="mt-3 text-[13px] leading-[1.85] text-white/85 sm:text-sm">
               {description}
             </p>
           </div>
           <div className="flex flex-wrap gap-3 shrink-0">
             <Link
               href="/contact"
-              className="inline-flex items-center justify-center rounded-lg bg-white px-5 py-3 text-[13px] font-bold text-[var(--primary)] transition-colors hover:bg-[var(--primary-soft)]"
+              className="inline-flex items-center justify-center rounded-lg bg-white px-5 py-3 text-[13px] font-bold text-primary transition-colors hover:bg-primary-soft"
             >
               相談してみる
             </Link>

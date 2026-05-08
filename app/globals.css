@@ -230,23 +230,105 @@ body {
   animation: float-y 5s ease-in-out infinite;
 }
 
-@keyframes marquee {
-  from { transform: translateX(0); }
-  to { transform: translateX(-50%); }
+@keyframes marquee-x {
+  from { transform: translate3d(0, 0, 0); }
+  to { transform: translate3d(-50%, 0, 0); }
 }
 
 .marquee-track {
-  animation: marquee 36s linear infinite;
+  animation: marquee-x 28s linear infinite;
+  will-change: transform;
+}
+
+.marquee-track.marquee-reverse {
+  animation: marquee-x 32s linear infinite reverse;
 }
 
 .group:hover .marquee-track {
   animation-play-state: paused;
 }
 
+.marquee-mask {
+  position: relative;
+  --marquee-fade-color: #f3f9f6;
+  --marquee-fade-width: 88px;
+  -webkit-mask-image: linear-gradient(
+    to right,
+    transparent 0,
+    black var(--marquee-fade-width),
+    black calc(100% - var(--marquee-fade-width)),
+    transparent 100%
+  );
+  mask-image: linear-gradient(
+    to right,
+    transparent 0,
+    black var(--marquee-fade-width),
+    black calc(100% - var(--marquee-fade-width)),
+    transparent 100%
+  );
+  -webkit-mask-size: 100% 100%;
+  mask-size: 100% 100%;
+  -webkit-mask-repeat: no-repeat;
+  mask-repeat: no-repeat;
+  -webkit-mask-position: center;
+  mask-position: center;
+}
+
+.marquee-mask::before,
+.marquee-mask::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: var(--marquee-fade-width);
+  z-index: 2;
+  pointer-events: none;
+}
+
+.marquee-mask::before {
+  left: 0;
+  background: linear-gradient(
+    to right,
+    var(--marquee-fade-color) 0%,
+    rgba(243, 249, 246, 0) 100%
+  );
+}
+
+.marquee-mask::after {
+  right: 0;
+  background: linear-gradient(
+    to left,
+    var(--marquee-fade-color) 0%,
+    rgba(243, 249, 246, 0) 100%
+  );
+}
+
+@media (max-width: 640px) {
+  .marquee-mask {
+    --marquee-fade-width: 56px;
+  }
+}
+
 @media (prefers-reduced-motion: reduce) {
   .pulse-soft,
-  .float-y,
+  .float-y {
+    animation: none;
+  }
   .marquee-track {
     animation: none;
+    width: 100%;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+  .marquee-dup {
+    display: none;
+  }
+  .marquee-mask {
+    -webkit-mask-image: none;
+    mask-image: none;
+  }
+  .marquee-mask::before,
+  .marquee-mask::after {
+    display: none;
   }
 }

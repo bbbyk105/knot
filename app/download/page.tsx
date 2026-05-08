@@ -13,8 +13,8 @@ export default function DownloadPage() {
     <SubPageShell>
       <PageHero
         label="DOWNLOAD"
-        title="サービス資料ダウンロード"
-        description="導入事例、活用シーン、料金レンジ、進め方の概要を1つの資料にまとめています。社内検討にもお使いいただけます。"
+        title="AI、結局なにから始めるか。20分で読めます。"
+        description="対応領域・活用シーン・進め方を1つの資料に。社内稟議や検討材料としてもお使いいただけます。"
       />
 
       <ContentSection>
@@ -31,36 +31,36 @@ export default function DownloadPage() {
                   key={c.title}
                   className="card grid gap-3 p-5 sm:grid-cols-[44px_1fr] sm:items-start sm:gap-5"
                 >
-                  <span className="grid size-10 place-items-center rounded-xl bg-[var(--primary-soft)] font-kanit text-[13px] text-[var(--primary)]">
+                  <span className="grid size-10 place-items-center rounded-xl bg-primary-soft font-kanit text-[13px] text-primary">
                     {String(idx + 1).padStart(2, "0")}
                   </span>
                   <div>
-                    <h3 className="text-[14.5px] font-bold text-[var(--ink)]">{c.title}</h3>
-                    <p className="mt-1.5 text-[12.5px] leading-[1.85] text-[var(--fg-mute)]">{c.desc}</p>
+                    <h3 className="text-[14.5px] font-bold text-ink">{c.title}</h3>
+                    <p className="mt-1.5 text-[12.5px] leading-[1.85] text-fg-mute">{c.desc}</p>
                   </div>
                 </li>
               ))}
             </ul>
           </div>
 
-          <aside className="card sticky top-24 p-7 sm:p-9">
-            <p className="font-kanit text-[12px] tracking-[0.18em] text-[var(--primary)]">REQUEST</p>
-            <h2 className="mt-3 text-[20px] font-bold text-[var(--ink)]">資料をリクエストする</h2>
-            <p className="mt-4 text-[13px] leading-[1.85] text-[var(--fg-mute)]">
+          <aside className="card p-7 sm:p-9 lg:sticky lg:top-24">
+            <p className="font-kanit text-xs tracking-[0.18em] text-primary">REQUEST</p>
+            <h2 className="mt-3 text-xl font-bold text-ink">資料をリクエストする</h2>
+            <p className="mt-4 text-[13px] leading-[1.85] text-fg-mute">
               現時点ではフォーム実装前の仮ページです。お問い合わせ経由でご連絡いただけましたら、最新の資料PDFをお送りします。
             </p>
             <dl className="mt-7 grid gap-4 text-[12.5px]">
-              <div className="flex justify-between gap-4 border-b border-[var(--border)] pb-3">
-                <dt className="text-[var(--fg-mute)]">ファイル形式</dt>
-                <dd className="font-bold text-[var(--ink)]">PDF</dd>
+              <div className="flex justify-between gap-4 border-b border-border pb-3">
+                <dt className="text-fg-mute">ファイル形式</dt>
+                <dd className="font-bold text-ink">PDF</dd>
               </div>
-              <div className="flex justify-between gap-4 border-b border-[var(--border)] pb-3">
-                <dt className="text-[var(--fg-mute)]">ページ数</dt>
-                <dd className="font-bold text-[var(--ink)]">約20ページ</dd>
+              <div className="flex justify-between gap-4 border-b border-border pb-3">
+                <dt className="text-fg-mute">ページ数</dt>
+                <dd className="font-bold text-ink">約20ページ</dd>
               </div>
               <div className="flex justify-between gap-4">
-                <dt className="text-[var(--fg-mute)]">想定読了時間</dt>
-                <dd className="font-bold text-[var(--ink)]">10分</dd>
+                <dt className="text-fg-mute">想定読了時間</dt>
+                <dd className="font-bold text-ink">10分</dd>
               </div>
             </dl>
             <div className="mt-8 flex flex-col gap-3">

@@ -20,8 +20,8 @@ export default function FaqPage() {
     <SubPageShell>
       <PageHero
         label="FAQ"
-        title="よくあるご質問"
-        description="AI導入や業務自動化の相談前によくいただく質問をまとめました。ここに無いご質問はお問い合わせよりお気軽にどうぞ。"
+        title="ご相談前に、よくいただく質問。"
+        description="費用感・期間・導入後の運用まで、相談時の頻出10問をまとめました。ここに無い質問はお問い合わせから直接どうぞ。"
       />
 
       <ContentSection>
@@ -34,7 +34,7 @@ export default function FaqPage() {
                   <details key={item.q} className="faq-item">
                     <summary>
                       <span className="flex items-start gap-3">
-                        <span className="font-kanit text-[var(--primary)]">Q.</span>
+                        <span className="font-kanit text-primary">Q.</span>
                         <span>{item.q}</span>
                       </span>
                     </summary>

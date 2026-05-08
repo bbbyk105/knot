@@ -1,9 +1,9 @@
 import type { CSSProperties } from "react";
-import Link from "next/link";
 
 import { FloatingCTA } from "./floating-cta";
-import { MobileMenu } from "./mobile-menu";
-import { ToolsMarquee } from "./tools-marquee";
+import { LottiePlayer } from "./lottie";
+import { ToolsCloud } from "./tools-marquee";
+import { Brand, SiteHeader } from "./subpage-components";
 
 const themeVars = {
   "--bg-soft": "#f4f8f6",
@@ -133,52 +133,6 @@ function IconHeadset({ size, className }: IconProps) {
   );
 }
 
-function IconUsersBig({ size, className }: IconProps) {
-  return (
-    <svg {...iconBase(size)} className={className}>
-      <circle cx="9" cy="10" r="3.5" />
-      <path d="M3 22a6 6 0 0112 0" />
-      <circle cx="19" cy="9" r="3" />
-      <path d="M16 22a5 5 0 0110 0" />
-    </svg>
-  );
-}
-
-function IconCalculator({ size, className }: IconProps) {
-  return (
-    <svg {...iconBase(size)} className={className}>
-      <rect x="6" y="3" width="16" height="22" rx="2" />
-      <rect x="9" y="6" width="10" height="4" rx="1" />
-      <circle cx="11" cy="14" r="0.8" fill="currentColor" />
-      <circle cx="14" cy="14" r="0.8" fill="currentColor" />
-      <circle cx="17" cy="14" r="0.8" fill="currentColor" />
-      <circle cx="11" cy="18" r="0.8" fill="currentColor" />
-      <circle cx="14" cy="18" r="0.8" fill="currentColor" />
-      <circle cx="17" cy="18" r="0.8" fill="currentColor" />
-    </svg>
-  );
-}
-
-function IconShield({ size, className }: IconProps) {
-  return (
-    <svg {...iconBase(size)} className={className}>
-      <path d="M14 3l8 3v7c0 5-4 9-8 11-4-2-8-6-8-11V6z" />
-      <path d="M10 13l3 3 5-5" />
-    </svg>
-  );
-}
-
-function IconChartLine({ size, className }: IconProps) {
-  return (
-    <svg {...iconBase(size)} className={className}>
-      <path d="M4 21V5" />
-      <path d="M4 21h18" />
-      <path d="M8 17l4-5 3 3 5-7" />
-      <path d="M17 8h3v3" />
-    </svg>
-  );
-}
-
 function IconHandHeart({ size, className }: IconProps) {
   return (
     <svg {...iconBase(size)} className={className}>
@@ -301,34 +255,34 @@ const services = [
 
 const useCases = [
   {
-    title: "営業・マーケティング",
-    desc: "リード獲得やスコアリング、レポート作成を自動化。",
-    Icon: IconMegaphone,
-  },
-  {
-    title: "カスタマーサポート",
-    desc: "問い合わせ対応の効率化やナレッジ活用を支援。",
+    title: "文章作成・返信",
+    desc: "メール、問い合わせ対応、提案文、SNS投稿などをAIで下書きします。",
     Icon: IconHeadset,
   },
   {
-    title: "人事・採用",
-    desc: "書類選考や日程調整の自動化で工数を削減。",
-    Icon: IconUsersBig,
+    title: "資料作成",
+    desc: "議事録、報告書、営業資料、説明資料の作成を効率化します。",
+    Icon: IconDocChart,
   },
   {
-    title: "経理・財務",
-    desc: "請求書処理やデータ集計を自動化し、ミスを削減。",
-    Icon: IconCalculator,
+    title: "情報整理",
+    desc: "メモ、顧客情報、社内資料、調査内容をわかりやすく整理します。",
+    Icon: IconPuzzle,
   },
   {
-    title: "情報システム",
-    desc: "社内問い合わせ対応や運用管理の効率化を実現。",
-    Icon: IconShield,
+    title: "定型作業の自動化",
+    desc: "入力、転記、通知、集計などの繰り返し作業を自動化します。",
+    Icon: IconGearAI,
   },
   {
-    title: "経営・企画",
-    desc: "データ分析による意思決定のスピードと精度を向上。",
-    Icon: IconChartLine,
+    title: "Web・SNS運用",
+    desc: "LP改善、投稿作成、導線設計、キャンペーン案づくりを支援します。",
+    Icon: IconMegaphone,
+  },
+  {
+    title: "業務フロー改善",
+    desc: "今の作業の流れを見直し、AIを使いやすい形に整えます。",
+    Icon: IconFlowChart,
   },
 ];
 
@@ -336,49 +290,49 @@ const steps = [
   {
     n: "1",
     title: "ヒアリング・課題整理",
-    desc: "現状の課題やご要望を丁寧にお伺いします。",
+    desc: "現状の業務とゴールを整理し、改善できる箇所を洗い出します。",
   },
   {
     n: "2",
     title: "ご提案・方針設計",
-    desc: "最適な活用方法とプランをご提案します。",
+    desc: "効果が出やすい領域から、導入範囲とプランをご提案します。",
   },
   {
     n: "3",
-    title: "導入・環境構築",
-    desc: "企業ニーズに合わせて初期設定を行います。",
+    title: "構築・実装",
+    desc: "ツール選定、初期設定、ワークフロー設計までを一気通貫で実装します。",
   },
   {
     n: "4",
-    title: "運用・定着支援",
-    desc: "運用サポートと改善提案で定着を支援します。",
+    title: "導入・定着支援",
+    desc: "現場で使い続けられる形に調整し、社内展開までサポートします。",
   },
   {
     n: "5",
-    title: "効果測定・改善",
-    desc: "効果を可視化し、継続的に改善します。",
+    title: "保守運用",
+    desc: "公開・導入後も継続的に運用サポートと改善を行います。",
   },
 ];
 
 const reasons = [
   {
-    title: "現場に寄り添う支援",
-    desc: "現場の声を大切にし、実行可能な解決策をともに考えます。",
+    title: "戦略から実装まで一人称で",
+    desc: "営業・設計・実装を分業せず、最小チームで一気通貫。判断のスピードと現場感が両立します。",
     Icon: IconHandHeart,
   },
   {
-    title: "実践的な知見とノウハウ",
-    desc: "豊富な導入経験をもとに、成果につながる方法をご提案します。",
+    title: "流行りに乗らないAI選定",
+    desc: "話題のツールではなく、現場で続けて使える定番を選定。導入後すぐに動く形にして渡します。",
     Icon: IconBulb,
   },
   {
-    title: "柔軟にオーダーメイド",
-    desc: "業種や課題に合わせた最適なソリューションを設計します。",
+    title: "業務に合わせて1から設計",
+    desc: "テンプレ提案ではなく、業務フローを理解した上でツール構成・運用ルールを個別設計します。",
     Icon: IconPuzzle,
   },
   {
-    title: "伴走するサポート体制",
-    desc: "導入後も継続的に伴走し、成果最大化まで支援します。",
+    title: "公開後も止まらない伴走",
+    desc: "導入後も月額の運用支援で継続改善。属人化させず、現場で回り続ける状態まで持っていきます。",
     Icon: IconHandshake,
   },
 ];
@@ -414,87 +368,29 @@ const news = [
 
 /* ---------- Layout ---------- */
 
-function Brand() {
-  return (
-    <Link href="/" aria-label="Knot" className="inline-flex items-center gap-2.5 select-none">
-      <svg width="26" height="26" viewBox="0 0 28 28" aria-hidden>
-        <path
-          d="M6 21V7L22 21V7"
-          stroke="#12aa84"
-          strokeWidth="2.6"
-          strokeLinecap="round"
-          strokeLinejoin="round"
-          fill="none"
-        />
-      </svg>
-      <span className="font-bold text-[18px] tracking-[-0.005em] text-[var(--ink)]">
-        Knot
-      </span>
-    </Link>
-  );
-}
-
-function Header() {
-  return (
-    <header className="sticky top-0 z-30 border-b border-[var(--border)] bg-white/90 backdrop-blur-md">
-      <div className="mx-auto max-w-[1180px] px-5 sm:px-7 lg:px-10">
-        <div className="flex h-[64px] items-center justify-between gap-4">
-          <Brand />
-          <nav className="hidden lg:flex items-center gap-7">
-            {[
-              { href: "/service", label: "サービス" },
-              { href: "/use-cases", label: "活用シーン" },
-              { href: "/flow", label: "導入の流れ" },
-              { href: "/faq", label: "よくある質問" },
-              { href: "/about", label: "会社情報" },
-              { href: "/news", label: "ブログ" },
-            ].map((l) => (
-              <a
-                key={l.href}
-                href={l.href}
-                className="text-[13px] font-medium text-[var(--fg)] hover:text-[var(--primary)] transition-colors"
-              >
-                {l.label}
-              </a>
-            ))}
-          </nav>
-          <div className="flex items-center gap-2">
-            <a href="/download" className="hidden md:inline-flex btn-primary text-[12.5px] py-2.5 px-4">
-              資料ダウンロードする
-            </a>
-            <a href="/contact" className="hidden md:inline-flex btn-outline text-[12.5px] py-2.5 px-4">
-              お問い合わせ
-            </a>
-            <MobileMenu />
-          </div>
-        </div>
-      </div>
-    </header>
-  );
-}
 
 function Hero() {
   return (
-    <section className="relative bg-linear-to-b from-[var(--bg-tint)] to-white pt-16 sm:pt-20 lg:pt-24 pb-20 sm:pb-28">
+    <section className="relative bg-linear-to-b from-bg-tint to-white pt-16 sm:pt-20 lg:pt-24 pb-20 sm:pb-28">
       <div className="mx-auto max-w-[1180px] px-5 sm:px-7 lg:px-10">
         <div className="grid gap-10 lg:grid-cols-2 lg:gap-14 items-center">
           <div>
-            <h1 className="font-bold text-[30px] sm:text-[40px] lg:text-[48px] leading-[1.25] tracking-[-0.015em] text-[var(--ink)]">
-              AIで<span className="text-[var(--primary)]">時間</span>をつくり、
+            <h1 className="font-bold text-3xl sm:text-[40px] lg:text-5xl leading-tight tracking-[-0.015em] text-ink">
+              毎日の手作業を、
               <br />
-              本来に集中できる毎日へ。
+              <span className="text-primary">AIで仕組み</span>に変える。
             </h1>
-            <p className="mt-7 text-[13.5px] sm:text-[15px] leading-[1.95] text-[var(--fg-mute)] max-w-[460px]">
-              私たちは、AIと業務プロセスの最適化により
+            <p className="mt-7 text-[13.5px] sm:text-[15px] leading-[1.95] text-fg-mute max-w-[460px]">
+              中小企業・個人事業主向けに、AI導入・業務自動化・Web / EC構築を一気通貫で支援。
               <br className="hidden sm:inline" />
-              日々のルーティンワークから解放される未来を支援します。
+              現場で本当に使える形まで一緒に作ります。初回30分の相談は無料です。
             </p>
-            <div className="mt-8 flex flex-wrap gap-3">
-              <a href="/download" className="btn-primary">
-                資料をダウンロードする
+            <div className="mt-8 flex flex-col gap-3 sm:flex-row sm:flex-wrap">
+              <a href="/contact" className="btn-primary w-full sm:w-auto">
+                30分の無料相談を予約
               </a>
-              <a href="/contact" className="btn-outline">
-                まずは相談してみる
+              <a href="/download" className="btn-outline w-full sm:w-auto">
+                サービス資料を見る
               </a>
             </div>
           </div>
@@ -507,108 +403,19 @@ function Hero() {
 
 function HeroIllustration() {
   return (
-    <div className="relative w-full max-w-[520px] mx-auto aspect-square" aria-hidden>
+    <div className="relative mx-auto w-full max-w-[560px]">
       <div
-        className="absolute inset-0 rounded-3xl"
+        className="absolute inset-0 -z-10 rounded-[40px]"
         style={{
           background:
-            "radial-gradient(circle at 22% 18%, rgba(18,170,132,0.18), transparent 34%), radial-gradient(circle at 78% 76%, rgba(88,206,176,0.20), transparent 38%), linear-gradient(135deg, rgba(255,255,255,0.80), rgba(227,247,241,0.90))",
+            "radial-gradient(circle at 22% 18%, rgba(18,170,132,0.18), transparent 38%), radial-gradient(circle at 78% 76%, rgba(88,206,176,0.20), transparent 42%), linear-gradient(135deg, rgba(255,255,255,0.80), rgba(227,247,241,0.90))",
         }}
       />
-
-      <div className="absolute left-[7%] top-[9%] w-[78%] rounded-2xl bg-white border border-[var(--border)] shadow-[0_28px_70px_-24px_rgba(15,23,42,0.22)] overflow-hidden">
-        <div className="flex items-center justify-between border-b border-[var(--border)] px-5 py-4">
-          <div className="flex items-center gap-2">
-            <span className="grid size-8 place-items-center rounded-lg bg-[var(--primary-soft)] text-[var(--primary)]">
-              <IconGearAI size={17} />
-            </span>
-            <span className="font-kanit text-[13px] text-[var(--ink)]">AI FLOW</span>
-          </div>
-          <span className="rounded-full bg-[var(--primary)] px-3 py-1 text-[10px] font-bold text-white">
-            LIVE
-          </span>
-        </div>
-
-        <div className="grid gap-4 p-5">
-          <div className="grid grid-cols-[1fr_auto] items-end gap-4">
-            <div>
-              <p className="text-[11px] font-bold text-[var(--fg-mute)]">作業時間の削減見込み</p>
-              <div className="mt-3 flex items-end gap-2">
-                <span className="font-kanit text-[42px] leading-none text-[var(--ink)]">42</span>
-                <span className="pb-1.5 text-[13px] font-bold text-[var(--primary)]">hours / mo</span>
-              </div>
-            </div>
-            <div className="grid size-20 place-items-center rounded-full border-[10px] border-[var(--primary)] border-r-[var(--primary-soft)] border-b-[var(--primary-soft)] rotate-45">
-              <span className="-rotate-45 font-kanit text-[15px] text-[var(--primary)]">78%</span>
-            </div>
-          </div>
-
-          <div className="grid gap-2.5">
-            {[
-              ["問い合わせ", "回答案を自動生成", "92%"],
-              ["見積もり", "必要項目を整理", "68%"],
-              ["レポート", "週次集計を作成", "84%"],
-            ].map(([label, desc, value]) => (
-              <div
-                key={label}
-                className="grid grid-cols-[76px_1fr_44px] items-center gap-3 rounded-xl border border-[var(--border)] bg-[var(--bg-soft)] px-3 py-2.5"
-              >
-                <span className="text-[11px] font-bold text-[var(--ink)]">{label}</span>
-                <span className="h-2 rounded-full bg-white overflow-hidden">
-                  <span
-                    className="block h-full rounded-full bg-[var(--primary)]"
-                    style={{ width: value }}
-                  />
-                </span>
-                <span className="font-kanit text-[12px] text-[var(--primary)]">{value}</span>
-                <span className="col-start-2 col-span-2 -mt-1 text-[10.5px] font-medium text-[var(--fg-mute)]">
-                  {desc}
-                </span>
-              </div>
-            ))}
-          </div>
-        </div>
-      </div>
-
-      <div className="absolute right-[3%] top-[30%] w-[150px] rounded-2xl border border-[var(--border)] bg-white px-4 py-4 shadow-[0_22px_48px_-22px_rgba(15,23,42,0.28)] float-y">
-        <div className="flex items-center gap-2">
-          <span className="grid size-9 place-items-center rounded-full bg-[var(--primary)] text-white">
-            <IconBulb size={18} />
-          </span>
-          <div>
-            <p className="font-kanit text-[12px] leading-none text-[var(--ink)]">AI IDEA</p>
-            <p className="mt-1 text-[10px] font-bold text-[var(--fg-mute)]">次の改善候補</p>
-          </div>
-        </div>
-        <div className="mt-3 grid gap-1.5">
-          <span className="h-2 w-full rounded-full bg-[var(--primary-soft)]" />
-          <span className="h-2 w-[74%] rounded-full bg-[var(--primary-soft)]" />
-        </div>
-      </div>
-
-      <div
-        className="absolute left-[3%] bottom-[12%] w-[168px] rounded-2xl bg-[var(--ink)] px-4 py-4 text-white shadow-[0_24px_54px_-24px_rgba(15,23,42,0.45)]"
-        style={{ animation: "float-y 6s ease-in-out 0.5s infinite" }}
-      >
-        <div className="flex items-center justify-between gap-3">
-          <span className="grid size-9 place-items-center rounded-lg bg-white/12">
-            <IconFlowChart size={18} />
-          </span>
-          <span className="rounded-full bg-[var(--primary)] px-2.5 py-1 text-[10px] font-bold">
-            AUTO
-          </span>
-        </div>
-        <p className="mt-3 text-[12px] font-bold leading-snug">手作業をワークフロー化</p>
-        <div className="mt-3 flex items-center gap-1.5">
-          <span className="h-1.5 flex-1 rounded-full bg-white/25" />
-          <span className="h-1.5 flex-1 rounded-full bg-white/45" />
-          <span className="h-1.5 flex-1 rounded-full bg-[var(--primary)]" />
-        </div>
-      </div>
-
-      <span className="absolute right-[19%] bottom-[9%] size-3 rounded-full bg-[var(--primary)] pulse-soft" />
-      <span className="absolute left-[39%] bottom-[5%] size-2 rounded-full bg-[#8edfc9]" />
-      <span className="absolute right-[8%] bottom-[18%] size-2.5 rounded-full bg-[#c7f0e5]" />
+      <LottiePlayer
+        src="/animations/hero-status.json"
+        className="aspect-square w-full"
+        ariaLabel="AIによる業務フロー自動化のイメージ"
+      />
     </div>
   );
 }
@@ -618,11 +425,11 @@ function ConcernSection() {
     <section id="problem" className="relative py-20 sm:py-24">
       <div className="mx-auto max-w-[1180px] px-5 sm:px-7 lg:px-10">
         <div className="text-center">
-          <h2 className="font-bold text-[24px] sm:text-[30px] leading-[1.4] tracking-[-0.01em]">
-            こんなお悩みはありませんか？
+          <h2 className="font-bold text-2xl sm:text-3xl leading-[1.4] tracking-[-0.01em]">
+            こんな状況、放置していませんか？
           </h2>
-          <p className="mt-3 text-[13px] text-[var(--fg-mute)]">
-            多くの中小企業・個人事業主の方が同じ課題を抱えています。
+          <p className="mt-3 text-[13px] text-fg-mute">
+            ご相談時に、9割の方が口にする4つの「あるある」をまとめました。
           </p>
         </div>
         <div className="mt-12 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
@@ -645,30 +452,66 @@ function ConcernSection() {
   );
 }
 
-function ServicesSection() {
+function ServicesBlock() {
   return (
-    <section id="service" className="relative py-20 sm:py-24">
-      <div className="mx-auto max-w-[1180px] px-5 sm:px-7 lg:px-10">
-        <div className="text-center">
-          <h2 className="font-bold text-[24px] sm:text-[30px] leading-[1.4] tracking-[-0.01em]">
-            サービス内容
-          </h2>
-          <p className="mt-3 text-[13px] text-[var(--fg-mute)]">
-            AIの力と仕組み化で、業務の生産性向上を支援します。
-          </p>
+    <div id="service">
+      <div className="mx-auto max-w-[640px] text-center">
+        <h2 className="text-[26px] sm:text-[30px] font-bold leading-tight tracking-[-0.01em] text-ink">
+          サービス内容
+        </h2>
+        <p className="mx-auto mt-4 max-w-[560px] text-[14px] leading-[1.8] text-fg-mute">
+          ヒアリング・設計・実装・定着まで一気通貫。AIを入れて終わりにせず、現場で動き続ける形まで一緒に作ります。
+        </p>
+      </div>
+      <div className="mt-10 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
+        {services.map((s) => (
+          <div
+            key={s.title}
+            className="card card-hover flex flex-col items-center bg-white/95 p-7 text-center shadow-[0_2px_4px_rgba(15,23,42,0.04),0_18px_40px_-24px_rgba(15,23,42,0.18)]"
+          >
+            <span className="icon-square">
+              <s.Icon size={26} />
+            </span>
+            <h3 className="mt-5 font-bold text-base leading-normal">{s.title}</h3>
+            <p className="mt-3 text-[12.5px] leading-[1.85] text-fg-mute">
+              {s.desc}
+            </p>
+          </div>
+        ))}
+      </div>
+    </div>
+  );
+}
+
+function ToolsAndServices() {
+  return (
+    <section className="relative overflow-hidden">
+      <div
+        aria-hidden
+        className="pointer-events-none absolute inset-0"
+        style={{
+          background:
+            "linear-gradient(to bottom, #ffffff 0%, #f7faf8 18%, #f3f9f6 50%, #f7faf8 82%, #ffffff 100%), radial-gradient(circle at 50% 38%, rgba(18,170,132,0.08), transparent 60%)",
+          backgroundBlendMode: "multiply",
+        }}
+      />
+      <div className="relative">
+        <div className="mx-auto max-w-[1080px] px-6 pt-20 pb-6 sm:px-10 sm:pt-24 sm:pb-8 lg:px-12">
+          <ToolsCloud />
         </div>
-        <div className="mt-12 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
-          {services.map((s) => (
-            <div key={s.title} className="card card-hover p-7 flex flex-col items-center text-center">
-              <span className="icon-square">
-                <s.Icon size={26} />
-              </span>
-              <h3 className="mt-5 font-bold text-[16px] leading-[1.5]">{s.title}</h3>
-              <p className="mt-3 text-[12.5px] leading-[1.85] text-[var(--fg-mute)]">
-                {s.desc}
-              </p>
-            </div>
-          ))}
+
+        <div className="mx-auto max-w-[640px] px-6 sm:px-10 lg:px-12">
+          <div className="flex items-center gap-4 text-center text-fg-mute">
+            <span className="h-px flex-1 bg-linear-to-r from-transparent to-border" />
+            <p className="text-[12.5px] leading-[1.7]">
+              これらのツールを組み合わせて、業務に合った支援を組み立てます。
+            </p>
+            <span className="h-px flex-1 bg-linear-to-l from-transparent to-border" />
+          </div>
+        </div>
+
+        <div className="mx-auto max-w-[1180px] px-5 pb-20 pt-10 sm:px-7 sm:pb-24 sm:pt-12 lg:px-10">
+          <ServicesBlock />
         </div>
       </div>
     </section>
@@ -677,14 +520,14 @@ function ServicesSection() {
 
 function UseCasesSection() {
   return (
-    <section id="use-cases" className="relative bg-[var(--bg-soft)] py-20 sm:py-24">
+    <section id="use-cases" className="relative bg-bg-soft py-20 sm:py-24">
       <div className="mx-auto max-w-[1180px] px-5 sm:px-7 lg:px-10">
         <div className="text-center">
-          <h2 className="font-bold text-[24px] sm:text-[30px] leading-[1.4] tracking-[-0.01em]">
+          <h2 className="font-bold text-2xl sm:text-3xl leading-[1.4] tracking-[-0.01em]">
             活用シーン例
           </h2>
-          <p className="mt-3 text-[13px] text-[var(--fg-mute)]">
-            さまざまな業務・部門でAIを活用し、成果を生み出します。
+          <p className="mt-3 text-[13px] text-fg-mute">
+            難しいAI導入ではなく、日々の業務で使えるところから仕組み化します。
           </p>
         </div>
         <div className="mt-12 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
@@ -694,8 +537,8 @@ function UseCasesSection() {
                 <u.Icon size={24} />
               </span>
               <div>
-                <h3 className="font-bold text-[15px] leading-[1.5]">{u.title}</h3>
-                <p className="mt-2 text-[12.5px] leading-[1.85] text-[var(--fg-mute)]">
+                <h3 className="font-bold text-[15px] leading-normal">{u.title}</h3>
+                <p className="mt-2 text-[12.5px] leading-[1.85] text-fg-mute">
                   {u.desc}
                 </p>
               </div>
@@ -712,21 +555,21 @@ function FlowSection() {
     <section id="flow" className="relative py-20 sm:py-24">
       <div className="mx-auto max-w-[1180px] px-5 sm:px-7 lg:px-10">
         <div className="text-center">
-          <h2 className="font-bold text-[24px] sm:text-[30px] leading-[1.4] tracking-[-0.01em]">
+          <h2 className="font-bold text-2xl sm:text-3xl leading-[1.4] tracking-[-0.01em]">
             導入の流れ
           </h2>
-          <p className="mt-3 text-[13px] text-[var(--fg-mute)]">
-            最短距離で成果につなげるための、シンプルな5ステップ。
+          <p className="mt-3 text-[13px] text-fg-mute">
+            ご相談から運用まで5ステップ。1業務単位なら、最短2〜4週間で導入できます。
           </p>
         </div>
-        <div className="mt-12 grid gap-5 sm:grid-cols-2 lg:grid-cols-5 relative">
+        <div className="mt-12 grid gap-5 sm:grid-cols-3 lg:grid-cols-5 relative">
           {steps.map((s) => (
             <div key={s.n} className="card p-6 flex flex-col items-center text-center">
-              <span className="grid size-10 place-items-center rounded-full border-2 border-[var(--primary)] text-[var(--primary)] font-kanit text-[15px] mb-4">
+              <span className="grid size-10 place-items-center rounded-full border-2 border-primary text-primary font-kanit text-[15px] mb-4">
                 {s.n}
               </span>
-              <h3 className="font-bold text-[14.5px] leading-[1.5]">{s.title}</h3>
-              <p className="mt-2 text-[12px] leading-[1.85] text-[var(--fg-mute)]">
+              <h3 className="font-bold text-[14.5px] leading-normal">{s.title}</h3>
+              <p className="mt-2 text-xs leading-[1.85] text-fg-mute">
                 {s.desc}
               </p>
             </div>
@@ -739,14 +582,14 @@ function FlowSection() {
 
 function ReasonsSection() {
   return (
-    <section className="relative bg-[var(--bg-soft)] py-20 sm:py-24">
+    <section className="relative bg-bg-soft py-20 sm:py-24">
       <div className="mx-auto max-w-[1180px] px-5 sm:px-7 lg:px-10">
         <div className="text-center">
-          <h2 className="font-bold text-[24px] sm:text-[30px] leading-[1.4] tracking-[-0.01em]">
-            私たちが選ばれる理由
+          <h2 className="font-bold text-2xl sm:text-3xl leading-[1.4] tracking-[-0.01em]">
+            ツール屋でもコンサル屋でもない理由
           </h2>
-          <p className="mt-3 text-[13px] text-[var(--fg-mute)]">
-            多くのお客様に信頼いただける、4つの強みがあります。
+          <p className="mt-3 text-[13px] text-fg-mute">
+            「導入して終わり」「資料だけ作って終わり」にしない、Knotの4つの違い。
           </p>
         </div>
         <div className="mt-12 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
@@ -755,8 +598,8 @@ function ReasonsSection() {
               <span className="icon-square">
                 <r.Icon size={24} />
               </span>
-              <h3 className="mt-5 font-bold text-[15px] leading-[1.5]">{r.title}</h3>
-              <p className="mt-2 text-[12.5px] leading-[1.85] text-[var(--fg-mute)]">
+              <h3 className="mt-5 font-bold text-[15px] leading-normal">{r.title}</h3>
+              <p className="mt-2 text-[12.5px] leading-[1.85] text-fg-mute">
                 {r.desc}
               </p>
             </div>
@@ -773,7 +616,7 @@ function FaqSection() {
       <div className="mx-auto max-w-[1180px] px-5 sm:px-7 lg:px-10">
         <div className="grid gap-10 lg:grid-cols-12 lg:gap-14 items-start">
           <div className="lg:col-span-7">
-            <h2 className="font-bold text-[24px] sm:text-[30px] leading-[1.4] tracking-[-0.01em]">
+            <h2 className="font-bold text-2xl sm:text-3xl leading-[1.4] tracking-[-0.01em]">
               よくあるご質問
             </h2>
             <div className="mt-8">
@@ -781,7 +624,7 @@ function FaqSection() {
                 <details key={f.q} className="faq-item">
                   <summary>
                     <span className="flex items-start gap-3">
-                      <span className="text-[var(--primary)] font-kanit pt-px">Q.</span>
+                      <span className="text-primary font-kanit pt-px">Q.</span>
                       <span>{f.q}</span>
                     </span>
                   </summary>
@@ -791,13 +634,13 @@ function FaqSection() {
             </div>
           </div>
           <div className="lg:col-span-5">
-            <div className="card p-7 sm:p-9 bg-[var(--bg-soft)] border-0">
-              <h3 className="font-bold text-[18px] leading-[1.5]">
+            <div className="card p-7 sm:p-9 bg-bg-soft border-0">
+              <h3 className="font-bold text-lg leading-normal">
                 まずはお気軽に
                 <br />
                 ご相談ください。
               </h3>
-              <p className="mt-4 text-[13px] leading-[1.85] text-[var(--fg-mute)]">
+              <p className="mt-4 text-[13px] leading-[1.85] text-fg-mute">
                 課題の整理からご提案まで、
                 <br />
                 丁寧にサポートします。
@@ -818,33 +661,33 @@ function FaqSection() {
 function CTABanner() {
   return (
     <section className="relative px-5 sm:px-7 lg:px-10 pb-10">
-      <div className="mx-auto max-w-[1180px] rounded-2xl bg-[var(--primary)] text-white px-6 sm:px-10 py-8 sm:py-9">
+      <div className="mx-auto max-w-[1180px] rounded-2xl bg-primary text-white px-6 sm:px-10 py-8 sm:py-9">
         <div className="flex flex-col gap-6 lg:flex-row lg:items-center lg:justify-between">
           <div className="flex items-center gap-5">
             <span className="grid size-14 shrink-0 place-items-center rounded-2xl bg-white/15">
               <IconDocBig size={28} />
             </span>
             <div>
-              <p className="font-bold text-[16px] sm:text-[18px] leading-[1.4]">
-                サービス資料で、AI活用の全体像をご紹介します。
+              <p className="font-bold text-base sm:text-lg leading-[1.4]">
+                AI、結局なにから始めるか。20分で読めます。
               </p>
               <p className="mt-1.5 text-[12.5px] leading-[1.7] text-white/80">
-                導入事例や活用シーン、料金プランなどをまとめてご覧いただけます。
+                対応領域・活用シーン・進め方を1つの資料に。社内検討にもお使いいただけます。
               </p>
             </div>
           </div>
           <div className="flex flex-wrap gap-3 shrink-0">
             <a
-              href="/download"
-              className="inline-flex items-center justify-center gap-2 rounded-lg bg-white text-[var(--primary)] px-5 py-3 text-[13px] font-bold hover:bg-[var(--primary-soft)] transition-colors"
+              href="/contact"
+              className="inline-flex items-center justify-center gap-2 rounded-lg bg-white text-primary px-5 py-3 text-[13px] font-bold hover:bg-primary-soft transition-colors"
             >
-              資料をダウンロードする
+              30分の無料相談を予約
             </a>
             <a
-              href="/contact"
+              href="/download"
               className="inline-flex items-center justify-center gap-2 rounded-lg border border-white/40 text-white px-5 py-3 text-[13px] font-bold hover:bg-white/10 transition-colors"
             >
-              まずは相談してみる
+              資料を見る
             </a>
           </div>
         </div>
@@ -855,21 +698,20 @@ function CTABanner() {
 
 function AboutSection() {
   return (
-    <section id="about" className="relative py-20 sm:py-24 bg-[var(--bg-soft)]">
+    <section id="about" className="relative py-20 sm:py-24 bg-bg-soft">
       <div className="mx-auto max-w-[1180px] px-5 sm:px-7 lg:px-10">
         <div className="grid gap-10 lg:grid-cols-2 lg:gap-14 items-center">
           <div>
-            <p className="font-kanit text-[60px] sm:text-[80px] leading-none text-[var(--primary)] opacity-90">
+            <p className="font-kanit text-6xl sm:text-[80px] leading-none text-primary opacity-90">
               ABOUT
             </p>
-            <h2 className="mt-2 font-bold text-[24px] sm:text-[30px] leading-[1.45] tracking-[-0.01em] text-[var(--ink)]">
-              信念を技術で支え、
+            <h2 className="mt-2 font-bold text-2xl sm:text-3xl leading-[1.45] tracking-[-0.01em] text-ink">
+              AIで、毎日の作業を
               <br />
-              未来の当たり前をつくる。
+              本当に減らす。
             </h2>
-            <p className="mt-6 text-[13.5px] leading-[1.95] text-[var(--fg-mute)] max-w-[460px]">
-              AIの力で、人と組織がもっと創造的に働ける社会へ。
-              私たちは、テクノロジーと人の力をつなぎ、持続可能な成長を支援していきます。
+            <p className="mt-6 text-[13.5px] leading-[1.95] text-fg-mute max-w-[460px]">
+              Knotは、AI導入・業務自動化・Web / EC構築を一気通貫で支援する小さなチームです。流行りのAIに乗るのではなく、現場で本当に使える形に整え、毎日の負担を確実に減らします。
             </p>
             <div className="mt-7">
               <a href="/about" className="btn-outline">
@@ -879,23 +721,17 @@ function AboutSection() {
             </div>
           </div>
           <div
-            className="relative aspect-[4/3] w-full rounded-2xl overflow-hidden"
+            className="relative aspect-4/3 w-full overflow-hidden rounded-3xl"
             style={{
               background:
                 "linear-gradient(135deg, rgba(18,170,132,0.10) 0%, rgba(88,206,176,0.14) 52%, rgba(255,255,255,0.86) 100%)",
             }}
           >
-            <div className="absolute left-[8%] top-[10%] w-[55%] h-[80%] rounded-2xl bg-white border border-[var(--border)] shadow-[0_24px_50px_-20px_rgba(15,23,42,0.16)]">
-              <div className="p-5 grid gap-3">
-                <div className="h-3 w-2/3 rounded bg-[var(--primary-soft)]" />
-                <div className="h-3 w-1/2 rounded bg-[var(--bg-soft)]" />
-                <div className="h-3 w-3/4 rounded bg-[var(--bg-soft)]" />
-                <div className="mt-4 h-24 rounded-xl bg-linear-to-br from-[var(--primary-soft)] to-white" />
-              </div>
-            </div>
-            <div className="absolute right-[6%] bottom-[8%] w-[40%] aspect-square rounded-2xl bg-white border border-[var(--border)] shadow-[0_24px_50px_-20px_rgba(15,23,42,0.16)] grid place-items-center">
-              <div className="size-[60%] rounded-full border-[10px] border-[var(--primary)] border-r-transparent rotate-45" />
-            </div>
+            <LottiePlayer
+              src="/animations/about-dna.json"
+              className="absolute inset-0"
+              ariaLabel="信念と技術が結びつくイメージ"
+            />
           </div>
         </div>
       </div>
@@ -909,31 +745,31 @@ function NewsSection() {
       <div className="mx-auto max-w-[1180px] px-5 sm:px-7 lg:px-10">
         <div className="grid gap-8 lg:grid-cols-12 items-start">
           <div className="lg:col-span-3">
-            <p className="font-kanit text-[60px] sm:text-[80px] leading-none text-[var(--primary)] opacity-90">
+            <p className="font-kanit text-6xl sm:text-[80px] leading-none text-primary opacity-90">
               NEWS
             </p>
-            <h2 className="mt-2 font-bold text-[24px] sm:text-[30px] leading-[1.45] tracking-[-0.01em] text-[var(--ink)]">
+            <h2 className="mt-2 font-bold text-2xl sm:text-3xl leading-[1.45] tracking-[-0.01em] text-ink">
               お知らせ・ブログ
             </h2>
-            <p className="mt-4 text-[13px] leading-[1.85] text-[var(--fg-mute)]">
+            <p className="mt-4 text-[13px] leading-[1.85] text-fg-mute">
               AI活用や業務改善に関する発信、登壇情報をまとめています。
             </p>
           </div>
           <div className="lg:col-span-9">
-            <ul className="border-t border-[var(--border)]">
+            <ul className="border-t border-border">
               {news.map((n) => (
                 <li key={n.title}>
                   <a
                     href="/news"
-                    className="flex flex-col gap-2 sm:flex-row sm:items-center sm:gap-6 border-b border-[var(--border)] py-5 group hover:bg-[var(--bg-soft)]/50 transition-colors px-2"
+                    className="flex flex-col gap-2 sm:flex-row sm:items-center sm:gap-6 border-b border-border py-5 group hover:bg-bg-soft/50 transition-colors px-2"
                   >
-                    <time className="text-[12.5px] text-[var(--fg-mute)] font-medium shrink-0 sm:w-[100px]">
+                    <time className="text-[12.5px] text-fg-mute font-medium shrink-0 sm:w-[100px]">
                       {n.date}
                     </time>
-                    <span className="rounded-full bg-[var(--primary-soft)] text-[var(--primary-text)] px-3 py-1 text-[11px] font-bold shrink-0 sm:w-[80px] text-center">
+                    <span className="rounded-full bg-primary-soft text-primary-text px-3 py-1 text-[11px] font-bold shrink-0 sm:w-20 text-center">
                       {n.cat}
                     </span>
-                    <p className="text-[13.5px] sm:text-[14.5px] font-medium leading-[1.55] flex-1 group-hover:text-[var(--primary)] transition-colors">
+                    <p className="text-[13.5px] sm:text-[14.5px] font-medium leading-[1.55] flex-1 group-hover:text-primary transition-colors">
                       {n.title}
                     </p>
                   </a>
@@ -955,12 +791,12 @@ function NewsSection() {
 
 function Footer() {
   return (
-    <footer className="border-t border-[var(--border)] bg-white px-5 sm:px-7 lg:px-10 pt-14 pb-[110px] md:pb-12">
+    <footer className="border-t border-border bg-white px-5 sm:px-7 lg:px-10 pt-14 pb-[110px] md:pb-12">
       <div className="mx-auto max-w-[1180px]">
         <div className="grid gap-10 md:grid-cols-12">
           <div className="md:col-span-3 flex flex-col gap-4">
-            <Brand />
-            <p className="text-[12.5px] leading-[1.85] text-[var(--fg-mute)] max-w-[280px]">
+            <Brand size="sm" />
+            <p className="text-[12.5px] leading-[1.85] text-fg-mute max-w-[280px]">
               AI導入・業務自動化・Web / EC構築を一気通貫で支援するパートナー。中小企業・個人事業主向け。
             </p>
           </div>
@@ -977,12 +813,12 @@ function Footer() {
             {
               h: "活用シーン",
               items: [
-                { l: "営業・マーケティング", h: "/use-cases" },
-                { l: "カスタマーサポート", h: "/use-cases" },
-                { l: "人事・採用", h: "/use-cases" },
-                { l: "経理・財務", h: "/use-cases" },
-                { l: "情報システム", h: "/use-cases" },
-                { l: "経営・企画", h: "/use-cases" },
+                { l: "文章作成・返信", h: "/use-cases" },
+                { l: "資料作成", h: "/use-cases" },
+                { l: "情報整理", h: "/use-cases" },
+                { l: "定型作業の自動化", h: "/use-cases" },
+                { l: "Web・SNS運用", h: "/use-cases" },
+                { l: "業務フロー改善", h: "/use-cases" },
               ],
             },
             {
@@ -1004,10 +840,10 @@ function Footer() {
           ].map((col) => (
             <div key={col.h} className="md:col-span-2 lg:col-span-2">
               <p className="font-bold text-[13px] mb-4">{col.h}</p>
-              <ul className="flex flex-col gap-2.5 text-[12.5px] text-[var(--fg-mute)]">
+              <ul className="flex flex-col gap-2.5 text-[12.5px] text-fg-mute">
                 {col.items.map((it) => (
                   <li key={it.l}>
-                    <a href={it.h} className="hover:text-[var(--primary)] transition-colors">
+                    <a href={it.h} className="hover:text-primary transition-colors">
                       {it.l}
                     </a>
                   </li>
@@ -1016,7 +852,7 @@ function Footer() {
             </div>
           ))}
         </div>
-        <div className="mt-12 pt-6 border-t border-[var(--border)] flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between text-[12px] text-[var(--fg-faint)]">
+        <div className="mt-12 pt-6 border-t border-border flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between text-xs text-fg-faint">
           <span>© 2026 Knot. All Rights Reserved.</span>
         </div>
       </div>
@@ -1027,12 +863,11 @@ function Footer() {
 export default function Home() {
   return (
     <div className="relative flex min-h-screen flex-col" style={themeVars}>
-      <Header />
+      <SiteHeader />
       <main className="flex-1">
         <Hero />
         <ConcernSection />
-        <ToolsMarquee />
-        <ServicesSection />
+        <ToolsAndServices />
         <UseCasesSection />
         <FlowSection />
         <ReasonsSection />

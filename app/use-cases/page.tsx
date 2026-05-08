@@ -14,21 +14,21 @@ export default function UseCasesPage() {
     <SubPageShell>
       <PageHero
         label="USE CASES"
-        title="部門ごとの日常業務に、AI活用の余地があります。"
-        description="営業、サポート、人事、経理、情報システム、経営企画など、繰り返し発生する作業から優先して効率化します。"
+        title="難しいAI導入ではなく、日々の業務で使えるところから仕組み化します。"
+        description="文章作成、資料整理、定型作業、Web・SNS運用まで。繰り返し発生する作業から優先して、AIで効率化します。"
       />
 
       <ContentSection>
         <SectionHeading
-          eyebrow="BY DEPARTMENT"
-          title="部門別の活用例"
-          description="どの部門でも、まず削れる作業から手を付けるのが定着の近道です。"
+          eyebrow="DAILY USE"
+          title="日々の業務での活用例"
+          description="現場で繰り返し発生する作業を、AIで下書き・整理・自動化します。"
         />
         <div className="mt-12 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
           {useCaseItems.map((u) => (
             <article key={u.title} className="card p-7">
-              <h3 className="text-[15.5px] font-bold leading-[1.5] text-[var(--ink)]">{u.title}</h3>
-              <p className="mt-3 text-[12.5px] leading-[1.85] text-[var(--fg-mute)]">{u.desc}</p>
+              <h3 className="text-[15.5px] font-bold leading-normal text-ink">{u.title}</h3>
+              <p className="mt-3 text-[12.5px] leading-[1.85] text-fg-mute">{u.desc}</p>
             </article>
           ))}
         </div>
@@ -43,11 +43,11 @@ export default function UseCasesPage() {
         <div className="mt-12 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
           {industries.map((i, idx) => (
             <article key={i.name} className="card flex h-full flex-col gap-4 p-7">
-              <span className="font-kanit text-[12px] tracking-[0.18em] text-[var(--primary)]">
+              <span className="font-kanit text-xs tracking-[0.18em] text-primary">
                 {String(idx + 1).padStart(2, "0")} / {String(industries.length).padStart(2, "0")}
               </span>
-              <h3 className="text-[16px] font-bold leading-[1.45] text-[var(--ink)]">{i.name}</h3>
-              <p className="text-[12.5px] leading-[1.85] text-[var(--fg-mute)]">{i.desc}</p>
+              <h3 className="text-base font-bold leading-[1.45] text-ink">{i.name}</h3>
+              <p className="text-[12.5px] leading-[1.85] text-fg-mute">{i.desc}</p>
             </article>
           ))}
         </div>
@@ -59,24 +59,24 @@ export default function UseCasesPage() {
           title="ビフォー・アフターのイメージ"
           description="繰り返し作業を仕組み化することで、これくらいの差が出ます。実数は業務によって変動します。"
         />
-        <div className="mt-12 grid gap-5 lg:grid-cols-3">
+        <div className="mt-12 grid gap-5 md:grid-cols-3">
           {beforeAfter.map((b) => (
             <article key={b.title} className="card overflow-hidden">
-              <header className="border-b border-[var(--border)] bg-[var(--bg-soft)] px-6 py-4">
-                <h3 className="text-[15px] font-bold text-[var(--ink)]">{b.title}</h3>
+              <header className="border-b border-border bg-bg-soft px-6 py-4">
+                <h3 className="text-[15px] font-bold text-ink">{b.title}</h3>
               </header>
               <div className="grid gap-5 p-6">
                 <div>
-                  <p className="font-kanit text-[11px] tracking-[0.16em] text-[var(--fg-faint)]">BEFORE</p>
-                  <p className="mt-2 text-[14px] font-bold leading-[1.6] text-[var(--ink)]">{b.before}</p>
+                  <p className="font-kanit text-[11px] tracking-[0.16em] text-fg-faint">BEFORE</p>
+                  <p className="mt-2 text-sm font-bold leading-[1.6] text-ink">{b.before}</p>
                 </div>
-                <div className="h-px bg-[var(--border)]" />
+                <div className="h-px bg-border" />
                 <div>
-                  <p className="font-kanit text-[11px] tracking-[0.16em] text-[var(--primary)]">AFTER</p>
-                  <p className="mt-2 text-[14px] font-bold leading-[1.6] text-[var(--ink)]">{b.after}</p>
+                  <p className="font-kanit text-[11px] tracking-[0.16em] text-primary">AFTER</p>
+                  <p className="mt-2 text-sm font-bold leading-[1.6] text-ink">{b.after}</p>
                 </div>
-                <div className="rounded-xl bg-[var(--primary-soft)] px-4 py-3">
-                  <p className="text-[12.5px] font-bold text-[var(--primary-text)]">{b.impact}</p>
+                <div className="rounded-xl bg-primary-soft px-4 py-3">
+                  <p className="text-[12.5px] font-bold text-primary-text">{b.impact}</p>
                 </div>
               </div>
             </article>

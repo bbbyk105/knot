@@ -27,8 +27,8 @@ export default function FlowPage() {
     <SubPageShell>
       <PageHero
         label="FLOW"
-        title="相談から導入、定着までを段階的に進めます。"
-        description="最初から大きく変えるのではなく、効果が見えやすい領域を選び、現場に無理のない形で導入します。"
+        title="ご相談から運用まで、5ステップで進めます。"
+        description="最短2〜4週間で1業務単位から導入可能。効果が見えやすい領域から始めて、無理のないペースで広げます。"
       />
 
       <ContentSection>
@@ -41,18 +41,18 @@ export default function FlowPage() {
           {flowItems.map((item, index) => (
             <li key={item.title}>
               <article className="card grid gap-5 p-6 sm:grid-cols-[80px_1fr_140px] sm:items-center sm:gap-7">
-                <span className="grid size-14 place-items-center rounded-2xl bg-[var(--primary)] font-kanit text-[18px] text-white">
+                <span className="grid size-14 place-items-center rounded-2xl bg-primary font-kanit text-lg text-white">
                   {String(index + 1).padStart(2, "0")}
                 </span>
                 <div>
-                  <h2 className="text-[16px] font-bold text-[var(--ink)]">{item.title}</h2>
-                  <p className="mt-2 text-[13px] leading-[1.85] text-[var(--fg-mute)]">{item.desc}</p>
+                  <h2 className="text-base font-bold text-ink">{item.title}</h2>
+                  <p className="mt-2 text-[13px] leading-[1.85] text-fg-mute">{item.desc}</p>
                 </div>
                 <div className="flex sm:flex-col sm:items-end">
-                  <span className="font-kanit text-[10.5px] tracking-[0.18em] text-[var(--fg-faint)]">
+                  <span className="font-kanit text-[10.5px] tracking-[0.18em] text-fg-faint">
                     DURATION
                   </span>
-                  <span className="ml-3 text-[13px] font-bold text-[var(--ink)] sm:ml-0 sm:mt-1">
+                  <span className="ml-3 text-[13px] font-bold text-ink sm:ml-0 sm:mt-1">
                     {item.duration}
                   </span>
                 </div>
@@ -68,14 +68,14 @@ export default function FlowPage() {
           title="進め方の前提"
           description="どの案件でも一貫して大事にしている、3つのスタンスです。"
         />
-        <div className="mt-12 grid gap-5 lg:grid-cols-3">
+        <div className="mt-12 grid gap-5 md:grid-cols-3">
           {principles.map((p, idx) => (
             <article key={p.title} className="card p-7">
-              <span className="font-kanit text-[40px] leading-none text-[var(--primary-soft)]">
+              <span className="font-kanit text-[40px] leading-none text-primary-soft">
                 {String(idx + 1).padStart(2, "0")}
               </span>
-              <h3 className="mt-3 text-[16px] font-bold text-[var(--ink)]">{p.title}</h3>
-              <p className="mt-3 text-[13px] leading-[1.85] text-[var(--fg-mute)]">{p.desc}</p>
+              <h3 className="mt-3 text-base font-bold text-ink">{p.title}</h3>
+              <p className="mt-3 text-[13px] leading-[1.85] text-fg-mute">{p.desc}</p>
             </article>
           ))}
         </div>

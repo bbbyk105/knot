@@ -22,22 +22,22 @@ export default function NewsPage() {
       <ContentSection>
         <SectionHeading eyebrow="LATEST" title="最新の発信" />
         <article className="card mt-10 grid gap-6 p-7 sm:p-9 lg:grid-cols-[1fr_1.4fr] lg:gap-10">
-          <div className="aspect-[4/3] rounded-2xl bg-linear-to-br from-[var(--primary-soft)] to-[var(--bg-tint)] lg:aspect-auto" />
+          <div className="aspect-4/3 rounded-2xl bg-linear-to-br from-primary-soft to-bg-tint lg:aspect-auto" />
           <div className="flex flex-col">
             <div className="flex flex-wrap items-center gap-3">
-              <time className="font-kanit text-[12px] tracking-[0.16em] text-[var(--fg-mute)]">
+              <time className="font-kanit text-xs tracking-[0.16em] text-fg-mute">
                 {latest.date}
               </time>
-              <span className="rounded-full bg-[var(--primary-soft)] px-3 py-1 text-[11px] font-bold text-[var(--primary-text)]">
+              <span className="rounded-full bg-primary-soft px-3 py-1 text-[11px] font-bold text-primary-text">
                 {latest.cat}
               </span>
             </div>
-            <h2 className="mt-4 text-[20px] font-bold leading-[1.5] text-[var(--ink)] sm:text-[22px]">
+            <h2 className="mt-4 text-xl font-bold leading-normal text-ink sm:text-[22px]">
               {latest.title}
             </h2>
-            <p className="mt-4 text-[13.5px] leading-[1.9] text-[var(--fg-mute)]">{latest.excerpt}</p>
+            <p className="mt-4 text-[13.5px] leading-[1.9] text-fg-mute">{latest.excerpt}</p>
             <div className="mt-auto pt-6">
-              <span className="inline-flex items-center gap-2 text-[13px] font-bold text-[var(--primary)]">
+              <span className="inline-flex items-center gap-2 text-[13px] font-bold text-primary">
                 公開準備中
               </span>
             </div>
@@ -51,15 +51,15 @@ export default function NewsPage() {
           {rest.map((item) => (
             <li key={item.title}>
               <article className="card grid gap-3 p-6 sm:grid-cols-[120px_90px_1fr] sm:items-start sm:gap-6">
-                <time className="font-kanit text-[12.5px] tracking-[0.08em] text-[var(--fg-mute)]">
+                <time className="font-kanit text-[12.5px] tracking-[0.08em] text-fg-mute">
                   {item.date}
                 </time>
-                <span className="w-fit rounded-full bg-[var(--primary-soft)] px-3 py-1 text-[11px] font-bold text-[var(--primary-text)]">
+                <span className="w-fit rounded-full bg-primary-soft px-3 py-1 text-[11px] font-bold text-primary-text">
                   {item.cat}
                 </span>
                 <div>
-                  <h3 className="text-[14.5px] font-bold leading-[1.6] text-[var(--ink)]">{item.title}</h3>
-                  <p className="mt-2 text-[12.5px] leading-[1.85] text-[var(--fg-mute)]">{item.excerpt}</p>
+                  <h3 className="text-[14.5px] font-bold leading-[1.6] text-ink">{item.title}</h3>
+                  <p className="mt-2 text-[12.5px] leading-[1.85] text-fg-mute">{item.excerpt}</p>
                 </div>
               </article>
             </li>

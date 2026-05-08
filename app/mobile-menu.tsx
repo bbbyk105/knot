@@ -1,6 +1,8 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import Image from "next/image";
+import Link from "next/link";
 
 const links = [
   { href: "/service", label: "サービス" },
@@ -11,28 +13,33 @@ const links = [
   { href: "/news", label: "ブログ" },
 ];
 
-export function MobileMenu() {
+export function NavDrawer() {
   const [open, setOpen] = useState(false);
 
   useEffect(() => {
-    if (open) {
-      document.body.style.overflow = "hidden";
-    } else {
-      document.body.style.overflow = "";
-    }
+    document.body.style.overflow = open ? "hidden" : "";
     return () => {
       document.body.style.overflow = "";
     };
+  }, [open]);
+
+  useEffect(() => {
+    if (!open) return;
+    function onKey(e: KeyboardEvent) {
+      if (e.key === "Escape") setOpen(false);
+    }
+    window.addEventListener("keydown", onKey);
+    return () => window.removeEventListener("keydown", onKey);
   }, [open]);
 
   return (
     <>
       <button
         type="button"
-        aria-label={open ? "メニューを閉じる" : "メニューを開く"}
+        aria-label="メニューを開く"
         aria-expanded={open}
-        onClick={() => setOpen((v) => !v)}
-        className="grid size-10 place-items-center rounded-lg border border-[var(--border)] bg-white text-[var(--fg)] hover:bg-[var(--bg-soft)] transition-colors lg:hidden"
+        onClick={() => setOpen(true)}
+        className="grid size-10 place-items-center rounded-lg border border-border bg-white text-fg hover:bg-bg-soft transition-colors"
       >
         <svg
           width="16"
@@ -44,76 +51,119 @@ export function MobileMenu() {
           strokeLinecap="round"
           aria-hidden
         >
-          {open ? (
-            <path d="M4 4l8 8M12 4l-8 8" />
-          ) : (
-            <>
-              <path d="M2.5 5h11M2.5 11h11" />
-            </>
-          )}
+          <path d="M2.5 5h11M2.5 11h11" />
         </svg>
       </button>
 
-      {open && (
-        <div
-          className="fixed inset-0 top-[64px] z-20 lg:hidden"
-          role="dialog"
-          aria-modal="true"
-        >
-          <button
-            type="button"
-            aria-label="メニュー外を閉じる"
-            className="absolute inset-0 bg-[rgba(15,23,42,0.4)] backdrop-blur-sm"
-            onClick={() => setOpen(false)}
-          />
-          <nav className="relative bg-white border-b border-[var(--border)] shadow-[0_30px_60px_-20px_rgba(15,23,42,0.18)]">
-            <ul className="flex flex-col px-5 py-2">
-              {links.map((l) => (
-                <li key={l.href}>
-                  <a
+      <div
+        className={`fixed inset-0 z-50 bg-white transition-transform duration-300 ease-out ${
+          open ? "translate-x-0" : "translate-x-full pointer-events-none"
+        }`}
+        role="dialog"
+        aria-modal="true"
+        aria-hidden={!open}
+      >
+        <div className="flex min-h-full flex-col">
+          <div className="flex h-16 shrink-0 items-center justify-between border-b border-border px-5 sm:px-7 lg:px-10">
+            <Link
+              href="/"
+              onClick={() => setOpen(false)}
+              aria-label="Knot AI"
+              className="inline-flex select-none"
+            >
+              <Image
+                src="/images/logo.png"
+                alt="Knot AI"
+                width={1254}
+                height={1254}
+                priority
+                className="h-10 w-auto sm:h-11"
+              />
+            </Link>
+            <button
+              type="button"
+              aria-label="メニューを閉じる"
+              onClick={() => setOpen(false)}
+              className="grid size-10 place-items-center rounded-lg border border-border bg-white text-fg hover:bg-bg-soft transition-colors"
+            >
+              <svg
+                width="14"
+                height="14"
+                viewBox="0 0 16 16"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth="1.6"
+                strokeLinecap="round"
+                aria-hidden
+              >
+                <path d="M4 4l8 8M12 4l-8 8" />
+              </svg>
+            </button>
+          </div>
+
+          <nav className="flex-1 overflow-y-auto">
+            <ul className="mx-auto flex max-w-[720px] flex-col px-5 py-10 sm:px-7 sm:py-14">
+              {links.map((l, i) => (
+                <li
+                  key={l.href}
+                  className="border-b border-border last:border-b-0"
+                >
+                  <Link
                     href={l.href}
                     onClick={() => setOpen(false)}
-                    className="flex items-center justify-between py-4 text-[15px] font-bold text-[var(--fg)] border-b border-[var(--border)] last:border-b-0 hover:text-[var(--primary)] transition-colors"
+                    className="group flex items-center justify-between gap-6 py-6 transition-colors hover:text-primary"
                   >
-                    {l.label}
+                    <span className="flex items-baseline gap-4 sm:gap-5">
+                      <span className="font-kanit text-xs tracking-[0.16em] text-fg-faint">
+                        {String(i + 1).padStart(2, "0")}
+                      </span>
+                      <span className="text-xl font-bold leading-tight text-ink sm:text-[26px]">
+                        {l.label}
+                      </span>
+                    </span>
                     <svg
-                      width="14"
-                      height="14"
+                      width="18"
+                      height="18"
                       viewBox="0 0 16 16"
                       fill="none"
                       stroke="currentColor"
-                      strokeWidth="1.5"
+                      strokeWidth="1.4"
                       strokeLinecap="round"
                       strokeLinejoin="round"
-                      className="text-[var(--fg-faint)]"
                       aria-hidden
+                      className="text-fg-faint transition-all group-hover:translate-x-1 group-hover:text-primary"
                     >
                       <path d="M3 8h10" />
                       <path d="M9 4l4 4-4 4" />
                     </svg>
-                  </a>
+                  </Link>
                 </li>
               ))}
             </ul>
-            <div className="grid grid-cols-2 gap-3 p-5 border-t border-[var(--border)]">
-              <a
+          </nav>
+
+          <div className="shrink-0 border-t border-border bg-bg-soft px-5 py-6 sm:px-7 sm:py-8">
+            <div className="mx-auto flex max-w-[720px] flex-col gap-3 sm:flex-row">
+              <Link
                 href="/download"
                 onClick={() => setOpen(false)}
-                className="flex items-center justify-center gap-2 rounded-lg bg-[var(--primary)] px-3 py-3 text-[13px] font-bold text-white"
+                className="btn-primary w-full sm:flex-1"
               >
-                資料DL
-              </a>
-              <a
+                資料をダウンロードする
+              </Link>
+              <Link
                 href="/contact"
                 onClick={() => setOpen(false)}
-                className="flex items-center justify-center gap-2 rounded-lg border border-[var(--border-strong)] bg-white px-3 py-3 text-[13px] font-bold text-[var(--fg)]"
+                className="btn-outline w-full sm:flex-1"
               >
                 お問い合わせ
-              </a>
+              </Link>
             </div>
-          </nav>
+          </div>
         </div>
-      )}
+      </div>
     </>
   );
 }
+
+export const MobileMenu = NavDrawer;
