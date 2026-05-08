@@ -1,0 +1,68 @@
+import Link from "next/link";
+import {
+  CTABanner,
+  ContentSection,
+  PageHero,
+  SectionHeading,
+  SubPageShell,
+  faqItems,
+} from "../subpage-components";
+
+const categoryOrder = ["サービス全般", "期間", "料金", "導入後"];
+
+export default function FaqPage() {
+  const grouped = categoryOrder.map((cat) => ({
+    cat,
+    items: faqItems.filter((f) => f.cat === cat),
+  }));
+
+  return (
+    <SubPageShell>
+      <PageHero
+        label="FAQ"
+        title="よくあるご質問"
+        description="AI導入や業務自動化の相談前によくいただく質問をまとめました。ここに無いご質問はお問い合わせよりお気軽にどうぞ。"
+      />
+
+      <ContentSection>
+        <div className="mx-auto grid max-w-[920px] gap-12">
+          {grouped.map((g) => (
+            <section key={g.cat}>
+              <SectionHeading eyebrow={g.cat.toUpperCase()} title={g.cat} />
+              <div className="mt-6">
+                {g.items.map((item) => (
+                  <details key={item.q} className="faq-item">
+                    <summary>
+                      <span className="flex items-start gap-3">
+                        <span className="font-kanit text-[var(--primary)]">Q.</span>
+                        <span>{item.q}</span>
+                      </span>
+                    </summary>
+                    <p className="faq-body">{item.a}</p>
+                  </details>
+                ))}
+              </div>
+            </section>
+          ))}
+        </div>
+      </ContentSection>
+
+      <ContentSection tone="soft">
+        <div className="mx-auto max-w-[820px] text-center">
+          <SectionHeading
+            eyebrow="STILL HAVE QUESTIONS"
+            title="ここに無いご質問は、直接お問い合わせください。"
+            description="お電話よりもチャットやメール中心のやり取りで、現状を整理しながらご返答します。"
+            align="center"
+          />
+          <div className="mt-8 flex flex-wrap justify-center gap-3">
+            <Link href="/contact" className="btn-primary">お問い合わせ</Link>
+            <Link href="/download" className="btn-outline">資料を見る</Link>
+          </div>
+        </div>
+      </ContentSection>
+
+      <CTABanner />
+    </SubPageShell>
+  );
+}
